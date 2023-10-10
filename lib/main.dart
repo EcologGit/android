@@ -1,21 +1,23 @@
+import 'package:eco/services/router/router.dart';
 import 'package:eco/services/theme/theme_manager.dart';
-import 'package:eco/view/screen/review_screen/review.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final _router = AppRouter();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Обзор',
       debugShowCheckedModeBanner: false,
       theme: ThemeManager().getThemeDataAndroid,
-      home: const ReviewScreen(),
+      routerConfig: _router.config(),
     );
   }
 }

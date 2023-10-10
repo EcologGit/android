@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 @RoutePage()
-class ReviewScreen extends StatefulWidget {
-  const ReviewScreen({super.key});
+class ActivityScreen extends StatefulWidget {
+  const ActivityScreen({super.key});
 
   @override
-  State<ReviewScreen> createState() => _ReviewScreenState();
+  State<ActivityScreen> createState() => _ActivityScreenState();
 }
 
-class _ReviewScreenState extends State<ReviewScreen> {
+class _ActivityScreenState extends State<ActivityScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

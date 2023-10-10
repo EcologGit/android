@@ -1,17 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:eco/services/imgs/imgs_controller_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 
 @RoutePage()
-class ReviewScreen extends StatefulWidget {
-  const ReviewScreen({super.key});
+class MarksScreen extends StatefulWidget {
+  const MarksScreen({super.key});
 
   @override
-  State<ReviewScreen> createState() => _ReviewScreenState();
+  State<MarksScreen> createState() => _MarksScreenState();
 }
 
-class _ReviewScreenState extends State<ReviewScreen> {
+class _MarksScreenState extends State<MarksScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
