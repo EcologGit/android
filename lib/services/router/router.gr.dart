@@ -21,6 +21,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ActivityScreen(),
       );
     },
+    EventsReviewRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const EventsReviewPage(),
+      );
+    },
     MainRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -39,6 +45,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const NewReportScreen(),
       );
     },
+    PlacesReviewRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const PlacesReviewPage(),
+      );
+    },
     ProfileRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -49,6 +61,18 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const ReviewScreen(),
+      );
+    },
+    RoutesReviewRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const RoutesReviewPage(),
+      );
+    },
+    SortPointsReviewRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SortPointsReviewPage(),
       );
     },
   };
@@ -64,6 +88,20 @@ class ActivityRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'ActivityRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [EventsReviewPage]
+class EventsReviewRoute extends PageRouteInfo<void> {
+  const EventsReviewRoute({List<PageRouteInfo>? children})
+      : super(
+          EventsReviewRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'EventsReviewRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -111,6 +149,20 @@ class NewReportRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [PlacesReviewPage]
+class PlacesReviewRoute extends PageRouteInfo<void> {
+  const PlacesReviewRoute({List<PageRouteInfo>? children})
+      : super(
+          PlacesReviewRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'PlacesReviewRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [ProfileScreen]
 class ProfileRoute extends PageRouteInfo<void> {
   const ProfileRoute({List<PageRouteInfo>? children})
@@ -134,6 +186,34 @@ class ReviewRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'ReviewRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [RoutesReviewPage]
+class RoutesReviewRoute extends PageRouteInfo<void> {
+  const RoutesReviewRoute({List<PageRouteInfo>? children})
+      : super(
+          RoutesReviewRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RoutesReviewRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SortPointsReviewPage]
+class SortPointsReviewRoute extends PageRouteInfo<void> {
+  const SortPointsReviewRoute({List<PageRouteInfo>? children})
+      : super(
+          SortPointsReviewRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SortPointsReviewRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

@@ -5,6 +5,10 @@ import 'package:eco/view/screen/marks_screen/marks.dart';
 import 'package:eco/view/screen/new_report_screen/new_report.dart';
 import 'package:eco/view/screen/profile_screen/profile.dart';
 import 'package:eco/view/screen/review_screen/review.dart';
+import 'package:eco/view/screen/review_screen/sections/events_review.dart';
+import 'package:eco/view/screen/review_screen/sections/places_review.dart';
+import 'package:eco/view/screen/review_screen/sections/routes_review.dart';
+import 'package:eco/view/screen/review_screen/sections/sort_points_review.dart';
 
 part 'router.gr.dart';
 
@@ -16,7 +20,16 @@ class AppRouter extends _$AppRouter {
           page: MainRoute.page,
           path: '/',
           children: [
-            AutoRoute(page: ReviewRoute.page, path: 'activity'),
+            AutoRoute(
+              page: ReviewRoute.page,
+              path: 'review',
+              children: [
+                AutoRoute(page: PlacesReviewRoute.page, path: 'places_review'),
+                AutoRoute(page: EventsReviewRoute.page, path: 'events_review'),
+                AutoRoute(page: RoutesReviewRoute.page, path: 'routes_review'),
+                AutoRoute(page: SortPointsReviewRoute.page, path: 'sort_points_review'),
+              ],
+            ),
             AutoRoute(page: ActivityRoute.page, path: 'activity'),
             AutoRoute(page: MarksRoute.page, path: 'marks'),
             AutoRoute(page: ProfileRoute.page, path: 'profile'),
