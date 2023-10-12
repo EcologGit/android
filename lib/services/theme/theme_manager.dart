@@ -2,15 +2,20 @@ import 'package:flutter/material.dart';
 
 class ThemeManager {
   static const mainColor = Color.fromRGBO(247, 246, 240, 1.0);
-  static const iconDefaultColor = Colors.grey;
+  static const defaultColor = Color.fromRGBO(36, 40, 44, 1);
   static const activeColor = Color.fromRGBO(211, 243, 107, 1);
   static const calendarColor = mainColor;
+  static const defaultBachgroundColor = Color.fromRGBO(247, 246, 240, 1.0);
 
   ThemeData get getThemeDataAndroid => _themeDataAndroid;
 
   final _themeDataAndroid = ThemeData(
+    // fontFamily: "Pro-Rounded-Regular",
     useMaterial3: true,
-    scaffoldBackgroundColor: const Color.fromRGBO(247, 246, 240, 1.0),
+    scaffoldBackgroundColor: defaultBachgroundColor,
+    appBarTheme: const AppBarTheme(
+        backgroundColor: defaultBachgroundColor,
+        titleTextStyle: TextStyle(fontWeight: FontWeight.w700, fontSize: 34, color: defaultColor)),
     iconTheme: IconThemeData(
       color: Colors.grey[400],
     ),
@@ -22,10 +27,12 @@ class ThemeManager {
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
-      unselectedLabelStyle: TextStyle(color: Colors.red, fontSize: 11),
-      unselectedIconTheme: IconThemeData(color: Colors.red),
+      unselectedIconTheme: IconThemeData(color: defaultColor),
       selectedIconTheme: IconThemeData(color: activeColor),
       selectedItemColor: activeColor,
+      unselectedItemColor: Colors.black,
+      selectedLabelStyle: TextStyle(fontSize: 12),
+      unselectedLabelStyle: TextStyle(fontSize: 11),
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: Color.fromRGBO(36, 40, 44, 1), foregroundColor: Colors.white),

@@ -12,64 +12,50 @@ class ReviewScreen extends StatefulWidget {
 }
 
 class _ReviewScreenState extends State<ReviewScreen> {
+  Widget createNavigationButton({required IconData icon, required String label}) {
+    return ElevatedButton(
+      style: ButtonStyle(
+          padding: MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.symmetric(horizontal: 14))),
+      onPressed: () {},
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            icon,
+            size: 20,
+          ),
+          const SizedBox(width: 8),
+          Text(label),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(mainAxisSize: MainAxisSize.max, children: [
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
+      body: Column(mainAxisSize: MainAxisSize.max, children: [
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Row(
               children: [
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Row(
-                    children: [
-                      Icon(Icons.flag),
-                      SizedBox(width: 5),
-                      Text('Места'),
-                    ],
-                  ),
-                ),
+                createNavigationButton(icon: Icons.flag, label: 'МЕСТА'),
                 const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Row(
-                    children: [
-                      Icon(Icons.earbuds_rounded),
-                      SizedBox(width: 5),
-                      Text('Маршруты'),
-                    ],
-                  ),
-                ),
+                createNavigationButton(icon: Icons.route, label: 'МАРШРУТЫ'),
                 const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Row(
-                    children: [
-                      Icon(Icons.celebration),
-                      SizedBox(width: 5),
-                      Text('Мероприятия'),
-                    ],
-                  ),
-                ),
+                createNavigationButton(icon: Icons.celebration_rounded, label: 'МЕРОПРИЯТИЯ'),
                 const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Row(
-                    children: [
-                      Icon(Icons.restore_from_trash),
-                      SizedBox(width: 5),
-                      Text('Точки сортировки'),
-                    ],
-                  ),
-                )
+                createNavigationButton(icon: Icons.restore_from_trash_rounded, label: 'ТОЧКИ СОРТИРОВКИ'),
               ],
             ),
           ),
-          const SizedBox(height: 15),
-          Expanded(
+        ),
+        const SizedBox(height: 15),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             child: ListView.separated(
               itemCount: 3,
               itemBuilder: (BuildContext context, int index) {
@@ -115,22 +101,40 @@ class _ReviewScreenState extends State<ReviewScreen> {
                             padding: const EdgeInsets.all(12),
                             decoration:
                                 BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(25)),
-                            child: const Column(
+                            child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Padding(
+                                const Padding(
                                   padding: EdgeInsets.all(4.0),
-                                  child: Text('Name'),
+                                  child: Text(
+                                    'Name',
+                                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+                                  ),
                                 ),
-                                Padding(
+                                const Padding(
                                   padding: EdgeInsets.all(4.0),
                                   child: Wrap(
-                                    children: [Icon(Icons.place), Text('Location')],
+                                    crossAxisAlignment: WrapCrossAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.place,
+                                        size: 15,
+                                        color: Colors.black,
+                                      ),
+                                      Text(
+                                        'Location',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.black,
+                                        ),
+                                      )
+                                    ],
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(4.0),
+                                  padding: const EdgeInsets.all(4.0),
                                   child: Wrap(
                                     spacing: 10,
                                     children: [
@@ -138,21 +142,48 @@ class _ReviewScreenState extends State<ReviewScreen> {
                                         spacing: 5,
                                         alignment: WrapAlignment.center,
                                         children: [
-                                          Icon(Icons.access_time),
-                                          Text(
-                                            '0.0',
-                                            style: TextStyle(fontSize: 17),
+                                          SvgPicture.asset(
+                                            ImgsControllerService.natureRating.url('svg'),
+                                            fit: BoxFit.cover,
+                                          ),
+                                          const Text(
+                                            '0,0',
+                                            style: TextStyle(
+                                              fontSize: 17,
+                                            ),
                                           )
                                         ],
                                       ),
                                       Wrap(
                                         spacing: 5,
                                         alignment: WrapAlignment.center,
-                                        children: [Icon(Icons.access_time), Text('0.0')],
+                                        children: [
+                                          SvgPicture.asset(
+                                            ImgsControllerService.routeRating.url('svg'),
+                                            fit: BoxFit.cover,
+                                          ),
+                                          const Text(
+                                            '0,0',
+                                            style: TextStyle(
+                                              fontSize: 17,
+                                            ),
+                                          )
+                                        ],
                                       ),
                                       Wrap(
                                         spacing: 5,
-                                        children: [Icon(Icons.access_time), Text('0.0')],
+                                        children: [
+                                          SvgPicture.asset(
+                                            ImgsControllerService.sortRating.url('svg'),
+                                            fit: BoxFit.cover,
+                                          ),
+                                          const Text(
+                                            '0,0',
+                                            style: TextStyle(
+                                              fontSize: 17,
+                                            ),
+                                          )
+                                        ],
                                       )
                                     ],
                                   ),
@@ -169,8 +200,8 @@ class _ReviewScreenState extends State<ReviewScreen> {
               separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 15),
             ),
           ),
-        ]),
-      ),
+        ),
+      ]),
     );
   }
 }

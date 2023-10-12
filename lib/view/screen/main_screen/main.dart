@@ -1,6 +1,10 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_route/auto_route.dart';
-import 'package:eco/services/router/router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import 'package:eco/services/imgs/imgs_controller_service.dart';
+import 'package:eco/services/router/router.dart';
 
 @RoutePage()
 class MainScreen extends StatefulWidget {
@@ -10,7 +14,34 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
+const colorDefaultIcon = Color.fromRGBO(211, 243, 107, 1);
+
 class _MainScreenState extends State<MainScreen> {
+  createBottomNavigation({
+    required String assetName,
+    required String label,
+  }) {
+    return BottomNavigationBarItem(
+      icon: SvgPicture.asset(
+        assetName,
+        fit: BoxFit.cover,
+      ),
+      activeIcon: ClipRRect(
+        borderRadius: BorderRadius.circular(25),
+        child: ColorFiltered(
+          colorFilter: const ColorFilter.mode(
+            colorDefaultIcon,
+            BlendMode.lighten,
+          ),
+          child: SvgPicture.asset(
+            assetName,
+          ),
+        ),
+      ),
+      label: label,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter(
@@ -25,50 +56,49 @@ class _MainScreenState extends State<MainScreen> {
         final tabsRouter = AutoTabsRouter.of(context);
 
         return Scaffold(
-            bottomNavigationBar: BottomNavigationBar(
-              onTap: (index) {
-                setState(() {
-                  tabsRouter.setActiveIndex(index);
-                });
-              },
-              currentIndex: tabsRouter.activeIndex,
-              items: const [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.search),
-                  label: 'Обзор',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.favorite),
-                  label: 'Активность',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.menu),
-                  label: 'Новый отчет',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.settings),
-                  label: 'Отметки',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.settings),
-                  label: 'Профиль',
-                ),
-              ],
-            ),
-            floatingActionButton: FloatingActionButton.extended(
-              icon: const Icon(Icons.display_settings),
+          bottomNavigationBar: BottomNavigationBar(
+            onTap: (index) {
+              setState(() {
+                tabsRouter.setActiveIndex(index);
+              });
+            },
+            currentIndex: tabsRouter.activeIndex,
+            items: [
+              createBottomNavigation(
+                  assetName: ImgsControllerService.reviewBottomNavigation.url('svg'), label: 'Обзор'),
+              createBottomNavigation(
+                  assetName: ImgsControllerService.activityBottomNavigation.url('svg'), label: 'Активность'),
+              createBottomNavigation(
+                  assetName: ImgsControllerService.newReportBottomNavigation.url('svg'),
+                  label: 'Новый отчет'),
+              createBottomNavigation(
+                  assetName: ImgsControllerService.marksBottomNavigation.url('svg'), label: 'Отметки'),
+              createBottomNavigation(
+                  assetName: ImgsControllerService.profileBottomNavigation.url('svg'), label: 'Профиль'),
+            ],
+          ),
+          floatingActionButton: SizedBox(
+            height: 44,
+            child: FloatingActionButton.extended(
+              icon: const RotationTransition(
+                  turns: AlwaysStoppedAnimation(90 / 360), child: Icon(Icons.tune, size: 20)),
               onPressed: () {},
-              label: const Text('ПАРАМЕТРЫ ПОИСКА'),
+              label: const Text('ПАРАМЕТРЫ ПОИСКА',
+                  style: TextStyle(
+                    fontSize: 14,
+                  )),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
             ),
-            floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-            appBar: AppBar(
-              title: const Text('Обзор'),
-              actions: const [
-                Icon(Icons.search),
-              ],
-            ),
-            body: child);
+          ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+          appBar: AppBar(
+            title: const Text('Обзор'),
+            actions: const [
+              Icon(Icons.search),
+            ],
+          ),
+          body: child,
+        );
       },
     );
   }
