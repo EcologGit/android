@@ -1,7 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:eco/services/imgs/imgs_controller_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 @RoutePage()
 class ProfileScreen extends StatefulWidget {
@@ -12,164 +10,89 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  bool _passwordVisible = false;
+
   @override
   Widget build(BuildContext context) {
+    TextEditingController controllerEmail = TextEditingController();
+    TextEditingController controllerPassword = TextEditingController();
+
+    String? validateEmail(String? value) {
+      String pattern =
+          r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+      RegExp regex = RegExp(pattern);
+      if (value == null || !regex.hasMatch(value)) {
+        return 'Введите корректный email';
+      }
+      return null;
+    }
+
+    String? validatePassword(String? value) {
+      if (value == null || value.trim().isEmpty) {
+        return 'Password is required';
+      }
+      return null;
+    }
+
     return Scaffold(
+      appBar: AppBar(title: const Text('Вход')),
       body: Padding(
         padding: const EdgeInsets.all(15),
-        child: Column(mainAxisSize: MainAxisSize.max, children: [
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Row(
-                    children: [
-                      Icon(Icons.flag),
-                      SizedBox(width: 5),
-                      Text('Места'),
-                    ],
+        child: SingleChildScrollView(
+            child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(25),
+              ),
+              child: Column(
+                children: [
+                  TextFormField(
+                    validator: (value) => validateEmail(value),
+                    controller: controllerEmail,
+                    decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        border: InputBorder.none,
+                        hintText: 'Электронная почта',
+                        hintStyle:
+                            TextStyle(color: Colors.grey[400], fontSize: 17, fontWeight: FontWeight.w400)),
+                    keyboardType: TextInputType.emailAddress,
                   ),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Row(
-                    children: [
-                      Icon(Icons.earbuds_rounded),
-                      SizedBox(width: 5),
-                      Text('Маршруты'),
-                    ],
+                  const Divider(
+                    height: 1,
+                    indent: 20,
                   ),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Row(
-                    children: [
-                      Icon(Icons.celebration),
-                      SizedBox(width: 5),
-                      Text('Мероприятия'),
-                    ],
-                  ),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Row(
-                    children: [
-                      Icon(Icons.restore_from_trash),
-                      SizedBox(width: 5),
-                      Text('Точки сортировки'),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-          const SizedBox(height: 15),
-          Expanded(
-            child: ListView.separated(
-              itemCount: 3,
-              itemBuilder: (BuildContext context, int index) {
-                return Column(
-                  children: [
-                    Stack(
-                      alignment: Alignment.topRight,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(25),
-                          child: Image.asset(ImgsControllerService.defaultImg.url()),
+                  TextFormField(
+                    obscureText: !_passwordVisible,
+                    validator: (value) => validatePassword(value),
+                    controller: controllerPassword,
+                    decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                          color: Colors.grey,
+                          size: 20,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              IconButton(
-                                iconSize: 50,
-                                onPressed: () {},
-                                icon: SvgPicture.asset(
-                                  ImgsControllerService.favoriteButton.url('svg'),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              IconButton(
-                                iconSize: 50,
-                                onPressed: () {},
-                                icon: SvgPicture.asset(
-                                  ImgsControllerService.shareButton.url('svg'),
-                                  fit: BoxFit.cover,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 0,
-                          left: 0,
-                          right: 0,
-                          child: Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration:
-                                BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(25)),
-                            child: const Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(4.0),
-                                  child: Text('Name'),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(4.0),
-                                  child: Wrap(
-                                    children: [Icon(Icons.place), Text('Location')],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(4.0),
-                                  child: Wrap(
-                                    spacing: 10,
-                                    children: [
-                                      Wrap(
-                                        spacing: 5,
-                                        alignment: WrapAlignment.center,
-                                        children: [
-                                          Icon(Icons.access_time),
-                                          Text(
-                                            '0.0',
-                                            style: TextStyle(fontSize: 17),
-                                          )
-                                        ],
-                                      ),
-                                      Wrap(
-                                        spacing: 5,
-                                        alignment: WrapAlignment.center,
-                                        children: [Icon(Icons.access_time), Text('0.0')],
-                                      ),
-                                      Wrap(
-                                        spacing: 5,
-                                        children: [Icon(Icons.access_time), Text('0.0')],
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                );
-              },
-              separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 15),
-            ),
-          ),
-        ]),
+                        onPressed: () {
+                          setState(() {
+                            _passwordVisible = !_passwordVisible;
+                          });
+                        },
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      border: InputBorder.none,
+                      hintText: 'Пароль',
+                      hintStyle:
+                          TextStyle(color: Colors.grey[400], fontSize: 17, fontWeight: FontWeight.w400),
+                    ),
+                    keyboardType: TextInputType.emailAddress,
+                  )
+                ],
+              ),
+            )
+          ],
+        )),
       ),
     );
   }

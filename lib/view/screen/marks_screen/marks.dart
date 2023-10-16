@@ -15,6 +15,12 @@ class _MarksScreenState extends State<MarksScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Отметки'),
+        actions: const [
+          Icon(Icons.search),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(mainAxisSize: MainAxisSize.max, children: [

@@ -71,7 +71,7 @@ class PlacesReviewPage extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.place,
-                                size: 15,
+                                size: 12,
                                 color: Colors.black,
                               ),
                               Text(

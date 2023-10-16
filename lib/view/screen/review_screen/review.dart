@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:eco/services/device_service.dart';
 import 'package:eco/services/router/router.dart';
 import 'package:flutter/material.dart';
 
@@ -12,16 +13,28 @@ class ReviewScreen extends StatefulWidget {
 
 class _ReviewScreenState extends State<ReviewScreen> {
   @override
+  void initState() {
+    super.initState();
+    DeviceService().initPlatformState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AutoTabsRouter(
       routes: const [
         PlacesReviewRoute(),
-        EventsReviewRoute(),
         RoutesReviewRoute(),
+        EventsReviewRoute(),
         SortPointsReviewRoute(),
       ],
       builder: (context, child) {
         return Scaffold(
+          appBar: AppBar(
+            title: const Text('Обзор'),
+            actions: const [
+              Icon(Icons.search),
+            ],
+          ),
           body: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -49,12 +62,8 @@ class NavigationButtonSection extends StatefulWidget {
 }
 
 class _NavigationButtonSectionState extends State<NavigationButtonSection> {
+  final Map<String, int> pagesReview = {'place': 0, 'route': 1, 'event': 2, 'sortPoint': 3};
   List<int> selectedCategory = [0];
-
-  final int place = 0;
-  final int route = 1;
-  final int event = 2;
-  final int sortPoint = 3;
 
   Widget createNavigationButton({
     required IconData icon,
@@ -94,14 +103,17 @@ class _NavigationButtonSectionState extends State<NavigationButtonSection> {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Row(
         children: [
-          createNavigationButton(icon: Icons.flag, label: 'МЕСТА', id: place),
+          createNavigationButton(icon: Icons.flag, label: 'МЕСТА', id: pagesReview['place']!),
           const SizedBox(width: 14),
-          createNavigationButton(icon: Icons.route, label: 'МАРШРУТЫ', id: route),
-          const SizedBox(width: 14),
-          createNavigationButton(icon: Icons.celebration_rounded, label: 'МЕРОПРИЯТИЯ', id: event),
+          createNavigationButton(icon: Icons.route, label: 'МАРШРУТЫ', id: pagesReview['route']!),
           const SizedBox(width: 14),
           createNavigationButton(
-              icon: Icons.restore_from_trash_rounded, label: 'ТОЧКИ СОРТИРОВКИ', id: sortPoint),
+              icon: Icons.celebration_rounded, label: 'МЕРОПРИЯТИЯ', id: pagesReview['event']!),
+          const SizedBox(width: 14),
+          createNavigationButton(
+              icon: Icons.restore_from_trash_rounded,
+              label: 'ТОЧКИ СОРТИРОВКИ',
+              id: pagesReview['sortPoint']!),
         ],
       ),
     );

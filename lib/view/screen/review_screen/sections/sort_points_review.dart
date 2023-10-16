@@ -71,7 +71,7 @@ class SortPointsReviewPage extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.place,
-                                size: 15,
+                                size: 12,
                                 color: Colors.black,
                               ),
                               Text(
@@ -80,6 +80,25 @@ class SortPointsReviewPage extends StatelessWidget {
                                   fontSize: 14,
                                   fontWeight: FontWeight.w400,
                                   color: Colors.black,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.all(4.0),
+                          child: Wrap(
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            spacing: 3,
+                            children: [
+                              Icon(
+                                Icons.watch_later,
+                                size: 15,
+                              ),
+                              Text(
+                                '00:00 - 00:00',
+                                style: TextStyle(
+                                  fontSize: 14,
                                 ),
                               )
                             ],
@@ -95,7 +114,7 @@ class SortPointsReviewPage extends StatelessWidget {
                                 alignment: WrapAlignment.center,
                                 children: [
                                   SvgPicture.asset(
-                                    ImgsControllerService.natureRating.url('svg'),
+                                    ImgsControllerService.plasticRating.url('svg'),
                                     fit: BoxFit.cover,
                                   ),
                                   const Text(
@@ -111,7 +130,7 @@ class SortPointsReviewPage extends StatelessWidget {
                                 alignment: WrapAlignment.center,
                                 children: [
                                   SvgPicture.asset(
-                                    ImgsControllerService.routeRating.url('svg'),
+                                    ImgsControllerService.butteryRating.url('svg'),
                                     fit: BoxFit.cover,
                                   ),
                                   const Text(
@@ -126,7 +145,7 @@ class SortPointsReviewPage extends StatelessWidget {
                                 spacing: 5,
                                 children: [
                                   SvgPicture.asset(
-                                    ImgsControllerService.sortRating.url('svg'),
+                                    ImgsControllerService.lampRating.url('svg'),
                                     fit: BoxFit.cover,
                                   ),
                                   const Text(
@@ -136,7 +155,52 @@ class SortPointsReviewPage extends StatelessWidget {
                                     ),
                                   )
                                 ],
-                              )
+                              ),
+                              Wrap(
+                                spacing: 5,
+                                children: [
+                                  SvgPicture.asset(
+                                    ImgsControllerService.paperRating.url('svg'),
+                                    fit: BoxFit.cover,
+                                  ),
+                                  const Text(
+                                    '0,0',
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Wrap(
+                                spacing: 5,
+                                children: [
+                                  SvgPicture.asset(
+                                    ImgsControllerService.metalRating.url('svg'),
+                                    fit: BoxFit.cover,
+                                  ),
+                                  const Text(
+                                    '0,0',
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Wrap(
+                                spacing: 5,
+                                children: [
+                                  SvgPicture.asset(
+                                    ImgsControllerService.glassRating.url('svg'),
+                                    fit: BoxFit.cover,
+                                  ),
+                                  const Text(
+                                    '0,0',
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ],
                           ),
                         ),

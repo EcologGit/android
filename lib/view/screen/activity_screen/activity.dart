@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:eco/services/imgs/imgs_controller_service.dart';
+import 'package:eco/services/router/router.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 @RoutePage()
 class ActivityScreen extends StatefulWidget {
@@ -14,163 +13,94 @@ class ActivityScreen extends StatefulWidget {
 class _ActivityScreenState extends State<ActivityScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(mainAxisSize: MainAxisSize.max, children: [
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Row(
-                    children: [
-                      Icon(Icons.flag),
-                      SizedBox(width: 5),
-                      Text('Места'),
-                    ],
-                  ),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Row(
-                    children: [
-                      Icon(Icons.earbuds_rounded),
-                      SizedBox(width: 5),
-                      Text('Маршруты'),
-                    ],
-                  ),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Row(
-                    children: [
-                      Icon(Icons.celebration),
-                      SizedBox(width: 5),
-                      Text('Мероприятия'),
-                    ],
-                  ),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Row(
-                    children: [
-                      Icon(Icons.restore_from_trash),
-                      SizedBox(width: 5),
-                      Text('Точки сортировки'),
-                    ],
-                  ),
-                )
-              ],
-            ),
+    return AutoTabsRouter(
+      routes: const [
+        ReportActivityRoute(),
+        TopActivityRoute(),
+      ],
+      builder: (context, child) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('Активность'),
+            actions: const [
+              Icon(Icons.search),
+            ],
           ),
-          const SizedBox(height: 15),
-          Expanded(
-            child: ListView.separated(
-              itemCount: 3,
-              itemBuilder: (BuildContext context, int index) {
-                return Column(
-                  children: [
-                    Stack(
-                      alignment: Alignment.topRight,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(25),
-                          child: Image.asset(ImgsControllerService.defaultImg.url()),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              IconButton(
-                                iconSize: 50,
-                                onPressed: () {},
-                                icon: SvgPicture.asset(
-                                  ImgsControllerService.favoriteButton.url('svg'),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              IconButton(
-                                iconSize: 50,
-                                onPressed: () {},
-                                icon: SvgPicture.asset(
-                                  ImgsControllerService.shareButton.url('svg'),
-                                  fit: BoxFit.cover,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 0,
-                          left: 0,
-                          right: 0,
-                          child: Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration:
-                                BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(25)),
-                            child: const Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(4.0),
-                                  child: Text('Name'),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(4.0),
-                                  child: Wrap(
-                                    children: [Icon(Icons.place), Text('Location')],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(4.0),
-                                  child: Wrap(
-                                    spacing: 10,
-                                    children: [
-                                      Wrap(
-                                        spacing: 5,
-                                        alignment: WrapAlignment.center,
-                                        children: [
-                                          Icon(Icons.access_time),
-                                          Text(
-                                            '0.0',
-                                            style: TextStyle(fontSize: 17),
-                                          )
-                                        ],
-                                      ),
-                                      Wrap(
-                                        spacing: 5,
-                                        alignment: WrapAlignment.center,
-                                        children: [Icon(Icons.access_time), Text('0.0')],
-                                      ),
-                                      Wrap(
-                                        spacing: 5,
-                                        children: [Icon(Icons.access_time), Text('0.0')],
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                );
-              },
-              separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 15),
-            ),
+          body: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Column(mainAxisSize: MainAxisSize.max, children: [
+              const NavigationButtonSection(),
+              const SizedBox(height: 15),
+              Expanded(
+                child: child,
+              ),
+            ]),
           ),
-        ]),
+        );
+      },
+    );
+  }
+}
+
+class NavigationButtonSection extends StatefulWidget {
+  const NavigationButtonSection({super.key});
+
+  @override
+  State<NavigationButtonSection> createState() => _NavigationButtonSectionState();
+}
+
+class _NavigationButtonSectionState extends State<NavigationButtonSection> {
+  final Map<String, int> pagesReview = {'report': 0, 'top': 1};
+  List<int> selectedCategory = [0];
+
+  Widget createNavigationButton({
+    required IconData icon,
+    required String label,
+    required int id,
+  }) {
+    final tabsRouter = AutoTabsRouter.of(context);
+
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        foregroundColor: selectedCategory.contains(id) ? Colors.white : const Color.fromRGBO(36, 40, 44, 1),
+        backgroundColor:
+            selectedCategory.contains(id) ? Colors.black : const Color.fromRGBO(211, 243, 107, 1),
       ),
+      onPressed: () {
+        selectedCategory = [];
+        selectedCategory.add(id);
+        setState(() {
+          tabsRouter.setActiveIndex(id);
+        });
+      },
+      child: Wrap(
+        crossAxisAlignment: WrapCrossAlignment.center,
+        alignment: WrapAlignment.center,
+        spacing: 5,
+        children: [
+          Icon(
+            icon,
+            size: 20,
+          ),
+          Text(label),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: createNavigationButton(icon: Icons.description, id: pagesReview['report']!, label: 'ОТЧЕТЫ'),
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: createNavigationButton(icon: Icons.star, id: pagesReview['top']!, label: 'ТОПЫ'),
+        ),
+      ],
     );
   }
 }

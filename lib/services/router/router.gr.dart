@@ -57,6 +57,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ProfileScreen(),
       );
     },
+    ReportActivityRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ReportActivityPage(),
+      );
+    },
     ReviewRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -73,6 +79,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SortPointsReviewPage(),
+      );
+    },
+    TopActivityRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const TopActivityPage(),
       );
     },
   };
@@ -177,6 +189,20 @@ class ProfileRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ReportActivityPage]
+class ReportActivityRoute extends PageRouteInfo<void> {
+  const ReportActivityRoute({List<PageRouteInfo>? children})
+      : super(
+          ReportActivityRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ReportActivityRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [ReviewScreen]
 class ReviewRoute extends PageRouteInfo<void> {
   const ReviewRoute({List<PageRouteInfo>? children})
@@ -214,6 +240,20 @@ class SortPointsReviewRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SortPointsReviewRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TopActivityPage]
+class TopActivityRoute extends PageRouteInfo<void> {
+  const TopActivityRoute({List<PageRouteInfo>? children})
+      : super(
+          TopActivityRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TopActivityRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

@@ -10,6 +10,12 @@ enum ImgsControllerService {
   natureRating,
   sortRating,
   routeRating,
+  butteryRating,
+  glassRating,
+  lampRating,
+  metalRating,
+  paperRating,
+  plasticRating,
 }
 
 extension ImgsControllerServiceExtension on ImgsControllerService {
@@ -33,11 +39,23 @@ extension ImgsControllerServiceExtension on ImgsControllerService {
       case ImgsControllerService.profileBottomNavigation:
         return 'assets/images/profile_bottom_navigation.$resolution';
       case ImgsControllerService.natureRating:
-        return 'assets/images/nature_rating.$resolution';
+        return 'assets/images/rating/nature_rating.$resolution';
       case ImgsControllerService.sortRating:
-        return 'assets/images/sort_rating.$resolution';
+        return 'assets/images/rating/sort_rating.$resolution';
       case ImgsControllerService.routeRating:
-        return 'assets/images/route_rating.$resolution';
+        return 'assets/images/rating/route_rating.$resolution';
+      case ImgsControllerService.butteryRating:
+        return 'assets/images/rating/buttery_rating.$resolution';
+      case ImgsControllerService.glassRating:
+        return 'assets/images/rating/glass_rating.$resolution';
+      case ImgsControllerService.lampRating:
+        return 'assets/images/rating/lamp_rating.$resolution';
+      case ImgsControllerService.metalRating:
+        return 'assets/images/rating/metal_rating.$resolution';
+      case ImgsControllerService.paperRating:
+        return 'assets/images/rating/paper_rating.$resolution';
+      case ImgsControllerService.plasticRating:
+        return 'assets/images/rating/plastic_rating.$resolution';
     }
   }
 }

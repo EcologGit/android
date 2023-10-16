@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 @RoutePage()
-class EventsReviewPage extends StatelessWidget {
-  const EventsReviewPage({super.key});
+class ReportActivityPage extends StatefulWidget {
+  const ReportActivityPage({super.key});
 
+  @override
+  State<ReportActivityPage> createState() => _ReportActivityPageState();
+}
+
+class _ReportActivityPageState extends State<ReportActivityPage> {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
@@ -53,93 +58,45 @@ class EventsReviewPage extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(25)),
-                    child: Column(
+                    child: const Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Padding(
+                        Padding(
                           padding: EdgeInsets.all(4.0),
-                          child: Text(
-                            'Events',
-                            style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
-                          ),
+                          child: Text('Report'),
                         ),
-                        const Padding(
+                        Padding(
                           padding: EdgeInsets.all(4.0),
                           child: Wrap(
-                            crossAxisAlignment: WrapCrossAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.place,
-                                size: 12,
-                                color: Colors.black,
-                              ),
-                              Text(
-                                'Location',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black,
-                                ),
-                              )
-                            ],
+                            children: [Icon(Icons.place), Text('Location')],
                           ),
                         ),
-                        const Padding(
+                        Padding(
                           padding: EdgeInsets.all(4.0),
                           child: Wrap(
                             spacing: 10,
                             children: [
                               Wrap(
-                                crossAxisAlignment: WrapCrossAlignment.center,
-                                spacing: 3,
+                                spacing: 5,
+                                alignment: WrapAlignment.center,
                                 children: [
-                                  Icon(
-                                    Icons.calendar_month,
-                                    size: 15,
-                                  ),
+                                  Icon(Icons.access_time),
                                   Text(
-                                    '01.01.2000',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                    ),
+                                    '0.0',
+                                    style: TextStyle(fontSize: 17),
                                   )
                                 ],
                               ),
                               Wrap(
-                                crossAxisAlignment: WrapCrossAlignment.center,
-                                spacing: 3,
-                                children: [
-                                  Icon(
-                                    Icons.watch_later,
-                                    size: 15,
-                                  ),
-                                  Text(
-                                    '00:00',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                    ),
-                                  )
-                                ],
+                                spacing: 5,
+                                alignment: WrapAlignment.center,
+                                children: [Icon(Icons.access_time), Text('0.0')],
                               ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Wrap(
-                            crossAxisAlignment: WrapCrossAlignment.center,
-                            spacing: 6,
-                            children: [
-                              Container(
-                                height: 12,
-                                width: 12,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              const Text('Завершено')
+                              Wrap(
+                                spacing: 5,
+                                children: [Icon(Icons.access_time), Text('0.0')],
+                              )
                             ],
                           ),
                         ),

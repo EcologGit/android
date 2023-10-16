@@ -71,7 +71,7 @@ class RoutesReviewPage extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.place,
-                                size: 15,
+                                size: 12,
                                 color: Colors.black,
                               ),
                               Text(
@@ -82,6 +82,46 @@ class RoutesReviewPage extends StatelessWidget {
                                   color: Colors.black,
                                 ),
                               )
+                            ],
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.all(4.0),
+                          child: Wrap(
+                            spacing: 10,
+                            children: [
+                              Wrap(
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                spacing: 3,
+                                children: [
+                                  Icon(
+                                    Icons.straighten,
+                                    size: 15,
+                                  ),
+                                  Text(
+                                    '0,0 км',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Wrap(
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                spacing: 3,
+                                children: [
+                                  Icon(
+                                    Icons.hourglass_bottom,
+                                    size: 15,
+                                  ),
+                                  Text(
+                                    '0,0 ч',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ],
                           ),
                         ),

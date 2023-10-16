@@ -1,8 +1,13 @@
+import 'package:eco/services/device_service.dart';
 import 'package:eco/services/router/router.dart';
 import 'package:eco/services/theme/theme_manager.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await DeviceService().initPlatformState();
+
   runApp(MyApp());
 }
 

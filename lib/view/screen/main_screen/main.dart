@@ -90,12 +90,6 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-          appBar: AppBar(
-            title: const Text('Обзор'),
-            actions: const [
-              Icon(Icons.search),
-            ],
-          ),
           body: child,
         );
       },

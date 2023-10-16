@@ -16,8 +16,8 @@ class ThemeManager {
     appBarTheme: const AppBarTheme(
         backgroundColor: defaultBachgroundColor,
         titleTextStyle: TextStyle(fontWeight: FontWeight.w700, fontSize: 34, color: defaultColor)),
-    iconTheme: IconThemeData(
-      color: Colors.grey[400],
+    iconTheme: const IconThemeData(
+      color: Color.fromRGBO(36, 40, 44, 1),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
@@ -25,6 +25,7 @@ class ThemeManager {
         foregroundColor: MaterialStateProperty.all<Color>(const Color.fromRGBO(36, 40, 44, 1)),
       ),
     ),
+
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
       unselectedIconTheme: IconThemeData(color: defaultColor),
