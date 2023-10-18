@@ -21,6 +21,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ActivityScreen(),
       );
     },
+    EventsMarksRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const EventsMarksPage(),
+      );
+    },
     EventsReviewRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -43,6 +49,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const NewReportScreen(),
+      );
+    },
+    PlacesMarksRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const PlacesMarksPage(),
       );
     },
     PlacesReviewRoute.name: (routeData) {
@@ -69,10 +81,22 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ReviewScreen(),
       );
     },
+    RoutesMarksRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const RoutesMarksPage(),
+      );
+    },
     RoutesReviewRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const RoutesReviewPage(),
+      );
+    },
+    SortPointsMarksRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SortPointsMarksPage(),
       );
     },
     SortPointsReviewRoute.name: (routeData) {
@@ -100,6 +124,20 @@ class ActivityRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'ActivityRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [EventsMarksPage]
+class EventsMarksRoute extends PageRouteInfo<void> {
+  const EventsMarksRoute({List<PageRouteInfo>? children})
+      : super(
+          EventsMarksRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'EventsMarksRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -161,6 +199,20 @@ class NewReportRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [PlacesMarksPage]
+class PlacesMarksRoute extends PageRouteInfo<void> {
+  const PlacesMarksRoute({List<PageRouteInfo>? children})
+      : super(
+          PlacesMarksRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'PlacesMarksRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [PlacesReviewPage]
 class PlacesReviewRoute extends PageRouteInfo<void> {
   const PlacesReviewRoute({List<PageRouteInfo>? children})
@@ -217,6 +269,20 @@ class ReviewRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [RoutesMarksPage]
+class RoutesMarksRoute extends PageRouteInfo<void> {
+  const RoutesMarksRoute({List<PageRouteInfo>? children})
+      : super(
+          RoutesMarksRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RoutesMarksRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [RoutesReviewPage]
 class RoutesReviewRoute extends PageRouteInfo<void> {
   const RoutesReviewRoute({List<PageRouteInfo>? children})
@@ -226,6 +292,20 @@ class RoutesReviewRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'RoutesReviewRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SortPointsMarksPage]
+class SortPointsMarksRoute extends PageRouteInfo<void> {
+  const SortPointsMarksRoute({List<PageRouteInfo>? children})
+      : super(
+          SortPointsMarksRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SortPointsMarksRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

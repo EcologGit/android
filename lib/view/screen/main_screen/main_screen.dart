@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -60,6 +61,7 @@ class _MainScreenState extends State<MainScreen> {
               setState(() {
                 tabsRouter.setActiveIndex(index);
               });
+              if (kDebugMode) {}
             },
             currentIndex: tabsRouter.activeIndex,
             items: [
@@ -76,19 +78,21 @@ class _MainScreenState extends State<MainScreen> {
                   assetName: ImgsControllerService.profileBottomNavigation.url('svg'), label: 'Профиль'),
             ],
           ),
-          floatingActionButton: SizedBox(
-            height: 44,
-            child: FloatingActionButton.extended(
-              icon: const RotationTransition(
-                  turns: AlwaysStoppedAnimation(90 / 360), child: Icon(Icons.tune, size: 20)),
-              onPressed: () {},
-              label: const Text('ПАРАМЕТРЫ ПОИСКА',
-                  style: TextStyle(
-                    fontSize: 14,
-                  )),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-            ),
-          ),
+          floatingActionButton: tabsRouter.currentPath == '/activity/top_activity'
+              ? const SizedBox()
+              : SizedBox(
+                  height: 44,
+                  child: FloatingActionButton.extended(
+                    icon: const RotationTransition(
+                        turns: AlwaysStoppedAnimation(90 / 360), child: Icon(Icons.tune, size: 14)),
+                    onPressed: () {},
+                    label: const Text('ПАРАМЕТРЫ ПОИСКА',
+                        style: TextStyle(
+                          fontSize: 14,
+                        )),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+                  ),
+                ),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
           body: child,
         );
