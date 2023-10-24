@@ -17,7 +17,7 @@ class EventsReviewPage extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(25),
-              child: Image.asset(ImgsControllerService.defaultImg.url()),
+              child: Image.asset(ImgsControllerService.defaultImg.url('png')),
             ),
             Padding(
               padding: const EdgeInsets.all(15.0),
@@ -29,7 +29,7 @@ class EventsReviewPage extends StatelessWidget {
                     iconSize: 50,
                     onPressed: () {},
                     icon: SvgPicture.asset(
-                      ImgsControllerService.favoriteButton.url('svg'),
+                      ImgsControllerService.favoriteButton.url(),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -37,7 +37,7 @@ class EventsReviewPage extends StatelessWidget {
                     iconSize: 50,
                     onPressed: () {},
                     icon: SvgPicture.asset(
-                      ImgsControllerService.shareButton.url('svg'),
+                      ImgsControllerService.shareButton.url(),
                       fit: BoxFit.cover,
                     ),
                   )

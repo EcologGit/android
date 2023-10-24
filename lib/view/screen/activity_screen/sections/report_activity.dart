@@ -24,7 +24,7 @@ class _ReportActivityPageState extends State<ReportActivityPage> {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(25),
-                child: Image.asset(ImgsControllerService.defaultImg.url()),
+                child: Image.asset(ImgsControllerService.defaultImg.url('png')),
               ),
               Positioned(
                 bottom: 0,
@@ -71,7 +71,7 @@ class _ReportActivityPageState extends State<ReportActivityPage> {
                               alignment: WrapAlignment.center,
                               children: [
                                 SvgPicture.asset(
-                                  ImgsControllerService.natureRating.url('svg'),
+                                  ImgsControllerService.natureRating.url(),
                                   fit: BoxFit.cover,
                                 ),
                                 const Text(
@@ -87,7 +87,7 @@ class _ReportActivityPageState extends State<ReportActivityPage> {
                               alignment: WrapAlignment.center,
                               children: [
                                 SvgPicture.asset(
-                                  ImgsControllerService.routeRating.url('svg'),
+                                  ImgsControllerService.routeRating.url(),
                                   fit: BoxFit.cover,
                                 ),
                                 const Text(
@@ -102,7 +102,7 @@ class _ReportActivityPageState extends State<ReportActivityPage> {
                               spacing: 5,
                               children: [
                                 SvgPicture.asset(
-                                  ImgsControllerService.sortRating.url('svg'),
+                                  ImgsControllerService.sortRating.url(),
                                   fit: BoxFit.cover,
                                 ),
                                 const Text(

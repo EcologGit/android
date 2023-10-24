@@ -33,6 +33,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const EventsReviewPage(),
       );
     },
+    LogInProfileRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const LogInProfilePage(),
+      );
+    },
     MainRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -91,6 +97,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const RoutesReviewPage(),
+      );
+    },
+    SignInProfileRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SignInProfilePage(),
       );
     },
     SortPointsMarksRoute.name: (routeData) {
@@ -152,6 +164,20 @@ class EventsReviewRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'EventsReviewRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [LogInProfilePage]
+class LogInProfileRoute extends PageRouteInfo<void> {
+  const LogInProfileRoute({List<PageRouteInfo>? children})
+      : super(
+          LogInProfileRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'LogInProfileRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -292,6 +318,20 @@ class RoutesReviewRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'RoutesReviewRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SignInProfilePage]
+class SignInProfileRoute extends PageRouteInfo<void> {
+  const SignInProfileRoute({List<PageRouteInfo>? children})
+      : super(
+          SignInProfileRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SignInProfileRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

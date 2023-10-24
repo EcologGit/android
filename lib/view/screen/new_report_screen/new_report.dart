@@ -80,7 +80,7 @@ class _NewReportScreenState extends State<NewReportScreen> {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(25),
-                          child: Image.asset(ImgsControllerService.defaultImg.url()),
+                          child: Image.asset(ImgsControllerService.defaultImg.url('png')),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(15.0),
@@ -92,7 +92,7 @@ class _NewReportScreenState extends State<NewReportScreen> {
                                 iconSize: 50,
                                 onPressed: () {},
                                 icon: SvgPicture.asset(
-                                  ImgsControllerService.favoriteButton.url('svg'),
+                                  ImgsControllerService.favoriteButton.url(),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -100,7 +100,7 @@ class _NewReportScreenState extends State<NewReportScreen> {
                                 iconSize: 50,
                                 onPressed: () {},
                                 icon: SvgPicture.asset(
-                                  ImgsControllerService.shareButton.url('svg'),
+                                  ImgsControllerService.shareButton.url(),
                                   fit: BoxFit.cover,
                                 ),
                               )

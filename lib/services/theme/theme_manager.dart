@@ -1,41 +1,53 @@
 import 'package:flutter/material.dart';
 
 class ThemeManager {
-  static const mainColor = Color.fromRGBO(247, 246, 240, 1.0);
-  static const defaultColor = Color.fromRGBO(36, 40, 44, 1);
+  static const defaultColorDart = Color.fromRGBO(36, 40, 44, 1);
   static const activeColor = Color.fromRGBO(211, 243, 107, 1);
-  static const calendarColor = mainColor;
-  static const defaultBachgroundColor = Color.fromRGBO(247, 246, 240, 1.0);
+  static const defaultBackgroundColor = Color.fromRGBO(247, 246, 240, 1.0);
+  static const defaultPlaceholderColor = Color.fromRGBO(189, 189, 189, 1);
 
   ThemeData get getThemeDataAndroid => _themeDataAndroid;
 
   final _themeDataAndroid = ThemeData(
     // fontFamily: "Pro-Rounded-Regular",
     useMaterial3: true,
-    scaffoldBackgroundColor: defaultBachgroundColor,
+    scaffoldBackgroundColor: defaultBackgroundColor,
     appBarTheme: const AppBarTheme(
-        backgroundColor: defaultBachgroundColor,
-        titleTextStyle: TextStyle(fontWeight: FontWeight.w700, fontSize: 34, color: defaultColor)),
+      surfaceTintColor: ThemeManager.defaultBackgroundColor,
+      backgroundColor: defaultBackgroundColor,
+      titleTextStyle: TextStyle(
+        fontWeight: FontWeight.w700,
+        fontSize: 34,
+        color: defaultColorDart,
+      ),
+    ),
     iconTheme: const IconThemeData(
-      color: Color.fromRGBO(36, 40, 44, 1),
+      color: defaultColorDart,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(const Color.fromRGBO(211, 243, 107, 1)),
-        foregroundColor: MaterialStateProperty.all<Color>(const Color.fromRGBO(36, 40, 44, 1)),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: activeColor,
+        foregroundColor: defaultColorDart,
       ),
     ),
 
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
-      unselectedIconTheme: IconThemeData(color: defaultColor),
+      unselectedIconTheme: IconThemeData(color: defaultColorDart),
       selectedIconTheme: IconThemeData(color: activeColor),
       selectedItemColor: activeColor,
       unselectedItemColor: Colors.black,
       selectedLabelStyle: TextStyle(fontSize: 12),
       unselectedLabelStyle: TextStyle(fontSize: 11),
     ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: defaultColorDart,
+      ),
+    ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        backgroundColor: Color.fromRGBO(36, 40, 44, 1), foregroundColor: Colors.white),
+      backgroundColor: defaultColorDart,
+      foregroundColor: Colors.white,
+    ),
   );
 }

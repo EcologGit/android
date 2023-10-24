@@ -51,7 +51,7 @@ class NavigationButtonSection extends StatefulWidget {
 
 class _NavigationButtonSectionState extends State<NavigationButtonSection> {
   final Map<String, int> pagesReview = {'report': 0, 'top': 1};
-  List<int> selectedCategory = [0];
+  List<int> selectedCategory = [];
 
   Widget createNavigationButton({
     required IconData icon,
@@ -87,6 +87,12 @@ class _NavigationButtonSectionState extends State<NavigationButtonSection> {
         ],
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    selectedCategory.add(pagesReview.values.first);
   }
 
   @override

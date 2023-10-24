@@ -8,31 +8,46 @@ class PlacesMarksPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return true
-        ? const Center(
-            child: Text('Places'),
-          )
-        : GridView.builder(
-            shrinkWrap: true,
-            itemCount: 6,
-            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 200, childAspectRatio: 3 / 2, crossAxisSpacing: 15, mainAxisExtent: 15),
-            itemBuilder: (BuildContext context, int index) {
-              return SizedBox(
-                height: 200,
-                child: Column(
-                  children: [
-                    const Text('Name'),
-                    ClipOval(
-                      clipBehavior: Clip.antiAlias,
-                      child: Image.asset(
-                        ImgsControllerService.defaultImg.url('png'),
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          );
+    final List<Map> myProducts = List.generate(12, (index) {
+      return {"id": index, "name": "Product $index"};
+    }).toList();
+
+    return GridView.builder(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+        mainAxisExtent: 171,
+        maxCrossAxisExtent: 200,
+        childAspectRatio: 3 / 2,
+        crossAxisSpacing: 15,
+        mainAxisSpacing: 15,
+      ),
+      itemCount: myProducts.length,
+      itemBuilder: (BuildContext ctx, index) {
+        return GridTile(
+          header: Container(
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(15),
+                topRight: Radius.circular(15),
+              ),
+              color: Colors.black26,
+            ),
+            height: 40,
+            child: Center(
+              child: Text('Places Marks $index'),
+            ),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: Image.asset(
+              height: 171,
+              width: 171,
+              ImgsControllerService.defaultImg.url('png'),
+              fit: BoxFit.cover,
+            ),
+          ),
+        );
+      },
+    );
   }
 }

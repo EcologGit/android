@@ -19,7 +19,7 @@ enum ImgsControllerService {
 }
 
 extension ImgsControllerServiceExtension on ImgsControllerService {
-  String url([String format = 'png']) {
+  String url([String format = 'svg']) {
     final resolution = format;
     switch (this) {
       case ImgsControllerService.defaultImg:

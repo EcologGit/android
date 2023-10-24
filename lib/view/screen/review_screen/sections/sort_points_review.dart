@@ -17,7 +17,7 @@ class SortPointsReviewPage extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(25),
-              child: Image.asset(ImgsControllerService.defaultImg.url()),
+              child: Image.asset(ImgsControllerService.defaultImg.url('png')),
             ),
             Padding(
               padding: const EdgeInsets.all(15.0),
@@ -29,7 +29,7 @@ class SortPointsReviewPage extends StatelessWidget {
                     iconSize: 50,
                     onPressed: () {},
                     icon: SvgPicture.asset(
-                      ImgsControllerService.favoriteButton.url('svg'),
+                      ImgsControllerService.favoriteButton.url(),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -37,7 +37,7 @@ class SortPointsReviewPage extends StatelessWidget {
                     iconSize: 50,
                     onPressed: () {},
                     icon: SvgPicture.asset(
-                      ImgsControllerService.shareButton.url('svg'),
+                      ImgsControllerService.shareButton.url(),
                       fit: BoxFit.cover,
                     ),
                   )
@@ -112,7 +112,7 @@ class SortPointsReviewPage extends StatelessWidget {
                             alignment: WrapAlignment.center,
                             children: [
                               SvgPicture.asset(
-                                ImgsControllerService.plasticRating.url('svg'),
+                                ImgsControllerService.plasticRating.url(),
                                 fit: BoxFit.cover,
                               ),
                               const Text(
@@ -128,7 +128,7 @@ class SortPointsReviewPage extends StatelessWidget {
                             alignment: WrapAlignment.center,
                             children: [
                               SvgPicture.asset(
-                                ImgsControllerService.butteryRating.url('svg'),
+                                ImgsControllerService.butteryRating.url(),
                                 fit: BoxFit.cover,
                               ),
                               const Text(
@@ -143,7 +143,7 @@ class SortPointsReviewPage extends StatelessWidget {
                             spacing: 5,
                             children: [
                               SvgPicture.asset(
-                                ImgsControllerService.lampRating.url('svg'),
+                                ImgsControllerService.lampRating.url(),
                                 fit: BoxFit.cover,
                               ),
                               const Text(
@@ -158,7 +158,7 @@ class SortPointsReviewPage extends StatelessWidget {
                             spacing: 5,
                             children: [
                               SvgPicture.asset(
-                                ImgsControllerService.paperRating.url('svg'),
+                                ImgsControllerService.paperRating.url(),
                                 fit: BoxFit.cover,
                               ),
                               const Text(
@@ -173,7 +173,7 @@ class SortPointsReviewPage extends StatelessWidget {
                             spacing: 5,
                             children: [
                               SvgPicture.asset(
-                                ImgsControllerService.metalRating.url('svg'),
+                                ImgsControllerService.metalRating.url(),
                                 fit: BoxFit.cover,
                               ),
                               const Text(
@@ -188,7 +188,7 @@ class SortPointsReviewPage extends StatelessWidget {
                             spacing: 5,
                             children: [
                               SvgPicture.asset(
-                                ImgsControllerService.glassRating.url('svg'),
+                                ImgsControllerService.glassRating.url(),
                                 fit: BoxFit.cover,
                               ),
                               const Text(

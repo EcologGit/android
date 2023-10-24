@@ -17,7 +17,7 @@ class PlacesReviewPage extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(25),
-              child: Image.asset(ImgsControllerService.defaultImg.url()),
+              child: Image.asset(ImgsControllerService.defaultImg.url('png')),
             ),
             Padding(
               padding: const EdgeInsets.all(15.0),
@@ -29,7 +29,7 @@ class PlacesReviewPage extends StatelessWidget {
                     iconSize: 50,
                     onPressed: () {},
                     icon: SvgPicture.asset(
-                      ImgsControllerService.favoriteButton.url('svg'),
+                      ImgsControllerService.favoriteButton.url(),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -37,7 +37,7 @@ class PlacesReviewPage extends StatelessWidget {
                     iconSize: 50,
                     onPressed: () {},
                     icon: SvgPicture.asset(
-                      ImgsControllerService.shareButton.url('svg'),
+                      ImgsControllerService.shareButton.url(),
                       fit: BoxFit.cover,
                     ),
                   )
@@ -93,7 +93,7 @@ class PlacesReviewPage extends StatelessWidget {
                             alignment: WrapAlignment.center,
                             children: [
                               SvgPicture.asset(
-                                ImgsControllerService.natureRating.url('svg'),
+                                ImgsControllerService.natureRating.url(),
                                 fit: BoxFit.cover,
                               ),
                               const Text(
@@ -109,7 +109,7 @@ class PlacesReviewPage extends StatelessWidget {
                             alignment: WrapAlignment.center,
                             children: [
                               SvgPicture.asset(
-                                ImgsControllerService.routeRating.url('svg'),
+                                ImgsControllerService.routeRating.url(),
                                 fit: BoxFit.cover,
                               ),
                               const Text(
@@ -124,7 +124,7 @@ class PlacesReviewPage extends StatelessWidget {
                             spacing: 5,
                             children: [
                               SvgPicture.asset(
-                                ImgsControllerService.sortRating.url('svg'),
+                                ImgsControllerService.sortRating.url(),
                                 fit: BoxFit.cover,
                               ),
                               const Text(

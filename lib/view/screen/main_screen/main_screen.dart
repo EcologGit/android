@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:eco/services/theme/theme_manager.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -14,8 +15,6 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
-const colorDefaultIcon = Color.fromRGBO(211, 243, 107, 1);
-
 class _MainScreenState extends State<MainScreen> {
   createBottomNavigation({
     required String assetName,
@@ -30,7 +29,7 @@ class _MainScreenState extends State<MainScreen> {
         borderRadius: BorderRadius.circular(25),
         child: ColorFiltered(
           colorFilter: const ColorFilter.mode(
-            colorDefaultIcon,
+            ThemeManager.activeColor,
             BlendMode.lighten,
           ),
           child: SvgPicture.asset(
@@ -55,13 +54,28 @@ class _MainScreenState extends State<MainScreen> {
       builder: (context, child) {
         final tabsRouter = AutoTabsRouter.of(context);
 
+        final childRouter = context.topRoute.router.currentPath;
+
+        List<String> inactiveFloatingButtonList = [
+          '/activity/top_activity',
+          '/marks/places_marks',
+          '/marks/routes_marks',
+          '/marks/events_marks',
+          '/marks/sort_points_marks',
+          '/profile/log_in',
+          '/profile/sign_in',
+        ];
+
+        if (kDebugMode) {
+          print('1$childRouter');
+        }
+
         return Scaffold(
           bottomNavigationBar: BottomNavigationBar(
             onTap: (index) {
               setState(() {
                 tabsRouter.setActiveIndex(index);
               });
-              if (kDebugMode) {}
             },
             currentIndex: tabsRouter.activeIndex,
             items: [
@@ -78,13 +92,15 @@ class _MainScreenState extends State<MainScreen> {
                   assetName: ImgsControllerService.profileBottomNavigation.url('svg'), label: 'Профиль'),
             ],
           ),
-          floatingActionButton: tabsRouter.currentPath == '/activity/top_activity'
+          floatingActionButton: inactiveFloatingButtonList.contains(childRouter)
               ? const SizedBox()
               : SizedBox(
                   height: 44,
                   child: FloatingActionButton.extended(
                     icon: const RotationTransition(
-                        turns: AlwaysStoppedAnimation(90 / 360), child: Icon(Icons.tune, size: 14)),
+                      turns: AlwaysStoppedAnimation(90 / 360),
+                      child: Icon(Icons.tune, size: 14),
+                    ),
                     onPressed: () {},
                     label: const Text('ПАРАМЕТРЫ ПОИСКА',
                         style: TextStyle(
