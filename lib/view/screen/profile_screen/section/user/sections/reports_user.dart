@@ -4,27 +4,52 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 @RoutePage()
-class ReportActivityPage extends StatefulWidget {
-  const ReportActivityPage({super.key});
+class ReportsUserPage extends StatefulWidget {
+  const ReportsUserPage({super.key});
 
   @override
-  State<ReportActivityPage> createState() => _ReportActivityPageState();
+  State<ReportsUserPage> createState() => _ReportsUserPageState();
 }
 
-class _ReportActivityPageState extends State<ReportActivityPage> {
+class _ReportsUserPageState extends State<ReportsUserPage> {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
       itemCount: 3,
       itemBuilder: (BuildContext context, int index) {
         return SizedBox(
-          height: 400,
+          height: 500,
           child: Stack(
             alignment: Alignment.topRight,
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(25),
                 child: Image.asset(ImgsControllerService.defaultImg.url('png')),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      iconSize: 50,
+                      onPressed: () {},
+                      icon: SvgPicture.asset(
+                        ImgsControllerService.changeButton.url(),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    IconButton(
+                      iconSize: 50,
+                      onPressed: () {},
+                      icon: SvgPicture.asset(
+                        ImgsControllerService.publicButton.url(),
+                        fit: BoxFit.cover,
+                      ),
+                    )
+                  ],
+                ),
               ),
               Positioned(
                 bottom: 0,

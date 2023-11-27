@@ -2,6 +2,8 @@ enum ImgsControllerService {
   defaultImg,
   favoriteButton,
   shareButton,
+  changeButton,
+  publicButton,
   reviewBottomNavigation,
   activityBottomNavigation,
   newReportBottomNavigation,
@@ -28,6 +30,10 @@ extension ImgsControllerServiceExtension on ImgsControllerService {
         return 'assets/images/favorite_button.$resolution';
       case ImgsControllerService.shareButton:
         return 'assets/images/share_button.$resolution';
+      case ImgsControllerService.changeButton:
+        return 'assets/images/change_button.$resolution';
+      case ImgsControllerService.publicButton:
+        return 'assets/images/public_button.$resolution';
       case ImgsControllerService.reviewBottomNavigation:
         return 'assets/images/review_bottom_navigation.$resolution';
       case ImgsControllerService.activityBottomNavigation:

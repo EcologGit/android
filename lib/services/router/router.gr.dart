@@ -75,10 +75,16 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ProfileScreen(),
       );
     },
-    ReportActivityRoute.name: (routeData) {
+    ReportsActivityRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ReportActivityPage(),
+        child: const ReportsActivityPage(),
+      );
+    },
+    ReportsUserRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ReportsUserPage(),
       );
     },
     ReviewRoute.name: (routeData) {
@@ -99,6 +105,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const RoutesReviewPage(),
       );
     },
+    SettingsUserRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SettingsUserPage(),
+      );
+    },
     SignInProfileRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -117,10 +129,22 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SortPointsReviewPage(),
       );
     },
+    StatisticsUserRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const StatisticsUserPage(),
+      );
+    },
     TopActivityRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const TopActivityPage(),
+      );
+    },
+    UserProfileRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const UserProfilePage(),
       );
     },
   };
@@ -267,15 +291,29 @@ class ProfileRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [ReportActivityPage]
-class ReportActivityRoute extends PageRouteInfo<void> {
-  const ReportActivityRoute({List<PageRouteInfo>? children})
+/// [ReportsActivityPage]
+class ReportsActivityRoute extends PageRouteInfo<void> {
+  const ReportsActivityRoute({List<PageRouteInfo>? children})
       : super(
-          ReportActivityRoute.name,
+          ReportsActivityRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'ReportActivityRoute';
+  static const String name = 'ReportsActivityRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ReportsUserPage]
+class ReportsUserRoute extends PageRouteInfo<void> {
+  const ReportsUserRoute({List<PageRouteInfo>? children})
+      : super(
+          ReportsUserRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ReportsUserRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -323,6 +361,20 @@ class RoutesReviewRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SettingsUserPage]
+class SettingsUserRoute extends PageRouteInfo<void> {
+  const SettingsUserRoute({List<PageRouteInfo>? children})
+      : super(
+          SettingsUserRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SettingsUserRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [SignInProfilePage]
 class SignInProfileRoute extends PageRouteInfo<void> {
   const SignInProfileRoute({List<PageRouteInfo>? children})
@@ -365,6 +417,20 @@ class SortPointsReviewRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [StatisticsUserPage]
+class StatisticsUserRoute extends PageRouteInfo<void> {
+  const StatisticsUserRoute({List<PageRouteInfo>? children})
+      : super(
+          StatisticsUserRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'StatisticsUserRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [TopActivityPage]
 class TopActivityRoute extends PageRouteInfo<void> {
   const TopActivityRoute({List<PageRouteInfo>? children})
@@ -374,6 +440,20 @@ class TopActivityRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'TopActivityRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [UserProfilePage]
+class UserProfileRoute extends PageRouteInfo<void> {
+  const UserProfileRoute({List<PageRouteInfo>? children})
+      : super(
+          UserProfileRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'UserProfileRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

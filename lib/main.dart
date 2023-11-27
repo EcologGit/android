@@ -11,6 +11,24 @@ void main() async {
   runApp(MyApp());
 }
 
+extension ListSpaceBetweenExtension on List<Widget> {
+  List<Widget> withSpaceBetween({double? width, double? height}) => [
+        for (int i = 0; i < length; i++) ...[
+          if (i > 0) SizedBox(width: width, height: height),
+          this[i],
+        ],
+      ];
+}
+
+extension ListDividerBetweenExtension on List<Widget> {
+  List<Widget> withDividerBetween({Color? colors = Colors.black38, double? height = 2}) => [
+        for (int i = 0; i < length; i++) ...[
+          if (i > 0) Divider(color: colors, height: height),
+          this[i],
+        ],
+      ];
+}
+
 class MyApp extends StatelessWidget {
   MyApp({super.key});
 

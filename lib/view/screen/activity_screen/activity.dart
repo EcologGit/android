@@ -15,7 +15,7 @@ class _ActivityScreenState extends State<ActivityScreen> {
   Widget build(BuildContext context) {
     return AutoTabsRouter(
       routes: const [
-        ReportActivityRoute(),
+        ReportsActivityRoute(),
         TopActivityRoute(),
       ],
       builder: (context, child) {

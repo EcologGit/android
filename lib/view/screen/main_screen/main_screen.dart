@@ -64,10 +64,14 @@ class _MainScreenState extends State<MainScreen> {
           '/marks/sort_points_marks',
           '/profile/log_in',
           '/profile/sign_in',
+          '/profile/user_profile',
+          '/profile/user_profile/statistics_user',
+          '/profile/user_profile/settings_user',
+          '/profile/user_profile/reports_user',
         ];
 
         if (kDebugMode) {
-          print('1$childRouter');
+          print(childRouter);
         }
 
         return Scaffold(

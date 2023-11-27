@@ -13,18 +13,13 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    bool titleFirstPage = context.topRoute.router.currentPath == '/profile/log_in';
     return AutoTabsRouter.pageView(
       routes: const [
+        UserProfileRoute(),
         LogInProfileRoute(),
         SignInProfileRoute(),
       ],
-      builder: (context, child, _) => Scaffold(
-        appBar: AppBar(
-          title: titleFirstPage ? const Text('Вход') : const Text('Регистрация'),
-        ),
-        body: child,
-      ),
+      builder: (context, child, _) => Scaffold(body: child),
     );
   }
 }

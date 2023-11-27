@@ -38,115 +38,120 @@ class _LogInProfilePageState extends State<LogInProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: SingleChildScrollView(
-          child: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(25),
-            ),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  TextFormField(
-                    cursorColor: ThemeManager.activeColor,
-                    validator: (value) => validateEmail(value),
-                    controller: controllerEmail,
-                    decoration: const InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                      border: InputBorder.none,
-                      hintText: 'Электронная почта',
-                      hintStyle: TextStyle(
-                        color: ThemeManager.defaultPlaceholderColor,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    keyboardType: TextInputType.emailAddress,
-                  ),
-                  const Divider(
-                    height: 1,
-                    indent: 20,
-                  ),
-                  TextFormField(
-                    cursorColor: ThemeManager.activeColor,
-                    obscureText: !_passwordVisible,
-                    validator: (value) => validatePassword(value),
-                    controller: controllerPassword,
-                    decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _passwordVisible ? Icons.visibility : Icons.visibility_off,
-                          color: Colors.grey,
-                          size: 20,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _passwordVisible = !_passwordVisible;
-                          });
-                        },
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                      border: InputBorder.none,
-                      hintText: 'Пароль',
-                      hintStyle: const TextStyle(
+    return Scaffold(
+      appBar: AppBar(
+        title:const Text('Вход'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: SingleChildScrollView(
+            child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(25),
+              ),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      cursorColor: ThemeManager.activeColor,
+                      validator: (value) => validateEmail(value),
+                      controller: controllerEmail,
+                      decoration: const InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        border: InputBorder.none,
+                        hintText: 'Электронная почта',
+                        hintStyle: TextStyle(
                           color: ThemeManager.defaultPlaceholderColor,
                           fontSize: 17,
-                          fontWeight: FontWeight.w400),
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      keyboardType: TextInputType.emailAddress,
                     ),
-                    keyboardType: TextInputType.emailAddress,
-                  ),
-                ],
+                    const Divider(
+                      height: 1,
+                      indent: 20,
+                    ),
+                    TextFormField(
+                      cursorColor: ThemeManager.activeColor,
+                      obscureText: !_passwordVisible,
+                      validator: (value) => validatePassword(value),
+                      controller: controllerPassword,
+                      decoration: InputDecoration(
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                            color: Colors.grey,
+                            size: 20,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _passwordVisible = !_passwordVisible;
+                            });
+                          },
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        border: InputBorder.none,
+                        hintText: 'Пароль',
+                        hintStyle: const TextStyle(
+                            color: ThemeManager.defaultPlaceholderColor,
+                            fontSize: 17,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      keyboardType: TextInputType.emailAddress,
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.only(top: 15),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(),
-              onPressed: () {},
-              child: Wrap(
-                crossAxisAlignment: WrapCrossAlignment.center,
-                spacing: 10,
-                children: [
-                  RotationTransition(
-                    turns: const AlwaysStoppedAnimation(270 / 360),
-                    child: Transform.scale(
-                      scaleX: -1,
-                      child: const Icon(
-                        Icons.key,
-                        size: 12,
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.only(top: 15),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(),
+                onPressed: () {},
+                child: Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  spacing: 10,
+                  children: [
+                    RotationTransition(
+                      turns: const AlwaysStoppedAnimation(270 / 360),
+                      child: Transform.scale(
+                        scaleX: -1,
+                        child: const Icon(
+                          Icons.key,
+                          size: 12,
+                        ),
                       ),
                     ),
-                  ),
-                  const Text('ВОЙТИ')
-                ],
+                    const Text('ВОЙТИ')
+                  ],
+                ),
               ),
             ),
-          ),
-          TextButton(
-            onPressed: () {
-              AutoRouter.of(context).navigate(const SignInProfileRoute());
-            },
-            child: const Wrap(
-              spacing: 10,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                Icon(
-                  Icons.person_add,
-                  size: 15,
-                ),
-                Text('ЗАРЕГИСТРИРОВАТЬСЯ'),
-              ],
-            ),
-          )
-        ],
-      )),
+            TextButton(
+              onPressed: () {
+                AutoRouter.of(context).navigate(const SignInProfileRoute());
+              },
+              child: const Wrap(
+                spacing: 10,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  Icon(
+                    Icons.person_add,
+                    size: 15,
+                  ),
+                  Text('ЗАРЕГИСТРИРОВАТЬСЯ'),
+                ],
+              ),
+            )
+          ],
+        )),
+      ),
     );
   }
 }
