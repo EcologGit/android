@@ -57,17 +57,17 @@ class _MainScreenState extends State<MainScreen> {
         final childRouter = context.topRoute.router.currentPath;
 
         List<String> inactiveFloatingButtonList = [
-          '/activity/top_activity',
-          '/marks/places_marks',
-          '/marks/routes_marks',
-          '/marks/events_marks',
-          '/marks/sort_points_marks',
-          '/profile/log_in',
-          '/profile/sign_in',
-          '/profile/user_profile',
-          '/profile/user_profile/statistics_user',
-          '/profile/user_profile/settings_user',
-          '/profile/user_profile/reports_user',
+          '/main/activity/top_activity',
+          '/main/marks/places_marks',
+          '/main/marks/routes_marks',
+          '/main/marks/events_marks',
+          '/main/marks/sort_points_marks',
+          '/main/profile/log_in',
+          '/main/profile/sign_in',
+          '/main/profile/user_profile',
+          '/main/profile/user_profile/statistics_user',
+          '/main/profile/user_profile/settings_user',
+          '/main/profile/user_profile/reports_user',
         ];
 
         if (kDebugMode) {
@@ -84,16 +84,15 @@ class _MainScreenState extends State<MainScreen> {
             currentIndex: tabsRouter.activeIndex,
             items: [
               createBottomNavigation(
-                  assetName: ImgsControllerService.reviewBottomNavigation.url('svg'), label: 'Обзор'),
+                  assetName: ImgsControllerService.reviewBottomNavigation.url(), label: 'Обзор'),
               createBottomNavigation(
-                  assetName: ImgsControllerService.activityBottomNavigation.url('svg'), label: 'Активность'),
+                  assetName: ImgsControllerService.activityBottomNavigation.url(), label: 'Активность'),
               createBottomNavigation(
-                  assetName: ImgsControllerService.newReportBottomNavigation.url('svg'),
-                  label: 'Новый отчет'),
+                  assetName: ImgsControllerService.newReportBottomNavigation.url(), label: 'Новый отчет'),
               createBottomNavigation(
-                  assetName: ImgsControllerService.marksBottomNavigation.url('svg'), label: 'Отметки'),
+                  assetName: ImgsControllerService.marksBottomNavigation.url(), label: 'Отметки'),
               createBottomNavigation(
-                  assetName: ImgsControllerService.profileBottomNavigation.url('svg'), label: 'Профиль'),
+                  assetName: ImgsControllerService.profileBottomNavigation.url(), label: 'Профиль'),
             ],
           ),
           floatingActionButton: inactiveFloatingButtonList.contains(childRouter)

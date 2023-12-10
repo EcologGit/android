@@ -26,6 +26,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
         RoutesReviewRoute(),
         EventsReviewRoute(),
         SortPointsReviewRoute(),
+        // TestDemoRoute(),
       ],
       builder: (context, child) {
         return Scaffold(

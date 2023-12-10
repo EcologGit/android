@@ -21,6 +21,19 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ActivityScreen(),
       );
     },
+    EventDetailReviewRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<EventDetailReviewRouteArgs>(
+          orElse: () =>
+              EventDetailReviewRouteArgs(eventId: pathParams.optString('id')));
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: EventDetailReviewPage(
+          eventId: args.eventId,
+          key: args.key,
+        ),
+      );
+    },
     EventsMarksRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -55,6 +68,19 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const NewReportScreen(),
+      );
+    },
+    PlaceDetailReviewRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<PlaceDetailReviewRouteArgs>(
+          orElse: () =>
+              PlaceDetailReviewRouteArgs(placeId: pathParams.optString('id')));
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: PlaceDetailReviewPage(
+          placeId: args.placeId,
+          key: args.key,
+        ),
       );
     },
     PlacesMarksRoute.name: (routeData) {
@@ -93,6 +119,19 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ReviewScreen(),
       );
     },
+    RouteDetailReviewRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<RouteDetailReviewRouteArgs>(
+          orElse: () =>
+              RouteDetailReviewRouteArgs(routeId: pathParams.optString('id')));
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: RouteDetailReviewPage(
+          routeId: args.routeId,
+          key: args.key,
+        ),
+      );
+    },
     RoutesMarksRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -115,6 +154,19 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SignInProfilePage(),
+      );
+    },
+    SortPointDetailReviewRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<SortPointDetailReviewRouteArgs>(
+          orElse: () => SortPointDetailReviewRouteArgs(
+              sortPointId: pathParams.optString('id')));
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: SortPointDetailReviewPage(
+          sortPointId: args.sortPointId,
+          key: args.key,
+        ),
       );
     },
     SortPointsMarksRoute.name: (routeData) {
@@ -162,6 +214,45 @@ class ActivityRoute extends PageRouteInfo<void> {
   static const String name = 'ActivityRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [EventDetailReviewPage]
+class EventDetailReviewRoute extends PageRouteInfo<EventDetailReviewRouteArgs> {
+  EventDetailReviewRoute({
+    String? eventId,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          EventDetailReviewRoute.name,
+          args: EventDetailReviewRouteArgs(
+            eventId: eventId,
+            key: key,
+          ),
+          rawPathParams: {'id': eventId},
+          initialChildren: children,
+        );
+
+  static const String name = 'EventDetailReviewRoute';
+
+  static const PageInfo<EventDetailReviewRouteArgs> page =
+      PageInfo<EventDetailReviewRouteArgs>(name);
+}
+
+class EventDetailReviewRouteArgs {
+  const EventDetailReviewRouteArgs({
+    this.eventId,
+    this.key,
+  });
+
+  final String? eventId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'EventDetailReviewRouteArgs{eventId: $eventId, key: $key}';
+  }
 }
 
 /// generated route for
@@ -249,6 +340,45 @@ class NewReportRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [PlaceDetailReviewPage]
+class PlaceDetailReviewRoute extends PageRouteInfo<PlaceDetailReviewRouteArgs> {
+  PlaceDetailReviewRoute({
+    String? placeId,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          PlaceDetailReviewRoute.name,
+          args: PlaceDetailReviewRouteArgs(
+            placeId: placeId,
+            key: key,
+          ),
+          rawPathParams: {'id': placeId},
+          initialChildren: children,
+        );
+
+  static const String name = 'PlaceDetailReviewRoute';
+
+  static const PageInfo<PlaceDetailReviewRouteArgs> page =
+      PageInfo<PlaceDetailReviewRouteArgs>(name);
+}
+
+class PlaceDetailReviewRouteArgs {
+  const PlaceDetailReviewRouteArgs({
+    this.placeId,
+    this.key,
+  });
+
+  final String? placeId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'PlaceDetailReviewRouteArgs{placeId: $placeId, key: $key}';
+  }
+}
+
+/// generated route for
 /// [PlacesMarksPage]
 class PlacesMarksRoute extends PageRouteInfo<void> {
   const PlacesMarksRoute({List<PageRouteInfo>? children})
@@ -333,6 +463,45 @@ class ReviewRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [RouteDetailReviewPage]
+class RouteDetailReviewRoute extends PageRouteInfo<RouteDetailReviewRouteArgs> {
+  RouteDetailReviewRoute({
+    String? routeId,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          RouteDetailReviewRoute.name,
+          args: RouteDetailReviewRouteArgs(
+            routeId: routeId,
+            key: key,
+          ),
+          rawPathParams: {'id': routeId},
+          initialChildren: children,
+        );
+
+  static const String name = 'RouteDetailReviewRoute';
+
+  static const PageInfo<RouteDetailReviewRouteArgs> page =
+      PageInfo<RouteDetailReviewRouteArgs>(name);
+}
+
+class RouteDetailReviewRouteArgs {
+  const RouteDetailReviewRouteArgs({
+    this.routeId,
+    this.key,
+  });
+
+  final String? routeId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'RouteDetailReviewRouteArgs{routeId: $routeId, key: $key}';
+  }
+}
+
+/// generated route for
 /// [RoutesMarksPage]
 class RoutesMarksRoute extends PageRouteInfo<void> {
   const RoutesMarksRoute({List<PageRouteInfo>? children})
@@ -386,6 +555,46 @@ class SignInProfileRoute extends PageRouteInfo<void> {
   static const String name = 'SignInProfileRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SortPointDetailReviewPage]
+class SortPointDetailReviewRoute
+    extends PageRouteInfo<SortPointDetailReviewRouteArgs> {
+  SortPointDetailReviewRoute({
+    String? sortPointId,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          SortPointDetailReviewRoute.name,
+          args: SortPointDetailReviewRouteArgs(
+            sortPointId: sortPointId,
+            key: key,
+          ),
+          rawPathParams: {'id': sortPointId},
+          initialChildren: children,
+        );
+
+  static const String name = 'SortPointDetailReviewRoute';
+
+  static const PageInfo<SortPointDetailReviewRouteArgs> page =
+      PageInfo<SortPointDetailReviewRouteArgs>(name);
+}
+
+class SortPointDetailReviewRouteArgs {
+  const SortPointDetailReviewRouteArgs({
+    this.sortPointId,
+    this.key,
+  });
+
+  final String? sortPointId;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'SortPointDetailReviewRouteArgs{sortPointId: $sortPointId, key: $key}';
+  }
 }
 
 /// generated route for

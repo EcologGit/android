@@ -1,6 +1,8 @@
 enum ImgsControllerService {
   defaultImg,
   favoriteButton,
+  mapButton,
+  newReportButton,
   shareButton,
   changeButton,
   publicButton,
@@ -18,6 +20,9 @@ enum ImgsControllerService {
   metalRating,
   paperRating,
   plasticRating,
+  reportRating,
+  ratingRating,
+  photoRating,
 }
 
 extension ImgsControllerServiceExtension on ImgsControllerService {
@@ -28,6 +33,10 @@ extension ImgsControllerServiceExtension on ImgsControllerService {
         return 'assets/images/default_img_card.$resolution';
       case ImgsControllerService.favoriteButton:
         return 'assets/images/favorite_button.$resolution';
+      case ImgsControllerService.mapButton:
+        return 'assets/images/map_button.$resolution';
+      case ImgsControllerService.newReportButton:
+        return 'assets/images/newReport_button.$resolution';
       case ImgsControllerService.shareButton:
         return 'assets/images/share_button.$resolution';
       case ImgsControllerService.changeButton:
@@ -62,6 +71,12 @@ extension ImgsControllerServiceExtension on ImgsControllerService {
         return 'assets/images/rating/paper_rating.$resolution';
       case ImgsControllerService.plasticRating:
         return 'assets/images/rating/plastic_rating.$resolution';
+      case ImgsControllerService.reportRating:
+        return 'assets/images/rating/report_rating.$resolution';
+      case ImgsControllerService.ratingRating:
+        return 'assets/images/rating/rating_rating.$resolution';
+      case ImgsControllerService.photoRating:
+        return 'assets/images/rating/photo_rating.$resolution';
     }
   }
 }

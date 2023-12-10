@@ -16,11 +16,16 @@ import 'package:eco/view/screen/profile_screen/section/user/sections/reports_use
 import 'package:eco/view/screen/profile_screen/section/user/sections/settings_user.dart';
 import 'package:eco/view/screen/profile_screen/section/user/sections/statistics_user.dart';
 import 'package:eco/view/screen/profile_screen/section/user/user_profile.dart';
+import 'package:eco/view/screen/review_screen/details/event_detail_review.dart';
+import 'package:eco/view/screen/review_screen/details/place_detail_review.dart';
+import 'package:eco/view/screen/review_screen/details/route_detail_review.dart';
+import 'package:eco/view/screen/review_screen/details/sort_point_detail_review.dart';
 import 'package:eco/view/screen/review_screen/review.dart';
 import 'package:eco/view/screen/review_screen/sections/events_review.dart';
 import 'package:eco/view/screen/review_screen/sections/places_review.dart';
 import 'package:eco/view/screen/review_screen/sections/routes_review.dart';
 import 'package:eco/view/screen/review_screen/sections/sort_points_review.dart';
+import 'package:flutter/material.dart';
 part 'router.gr.dart';
 
 @AutoRouterConfig()
@@ -29,15 +34,19 @@ class AppRouter extends _$AppRouter {
   List<AutoRoute> get routes => [
         AutoRoute(
           page: MainRoute.page,
-          path: '/',
+          path: '/main',
+          initial: true,
           children: [
-            RedirectRoute(path: '', redirectTo: 'places_review'),
             AutoRoute(
               page: ReviewRoute.page,
               path: 'review',
+              initial: true,
               children: [
-                RedirectRoute(path: '', redirectTo: 'places_review'),
-                AutoRoute(page: PlacesReviewRoute.page, path: 'places_review'),
+                AutoRoute(
+                  page: PlacesReviewRoute.page,
+                  path: 'places_review',
+                  initial: true,
+                ),
                 AutoRoute(page: RoutesReviewRoute.page, path: 'routes_review'),
                 AutoRoute(page: EventsReviewRoute.page, path: 'events_review'),
                 AutoRoute(page: SortPointsReviewRoute.page, path: 'sort_points_review'),
@@ -47,8 +56,11 @@ class AppRouter extends _$AppRouter {
               page: ActivityRoute.page,
               path: 'activity',
               children: [
-                RedirectRoute(path: '', redirectTo: 'report_activity'),
-                AutoRoute(page: ReportsActivityRoute.page, path: 'report_activity'),
+                AutoRoute(
+                  page: ReportsActivityRoute.page,
+                  path: 'report_activity',
+                  initial: true,
+                ),
                 AutoRoute(page: TopActivityRoute.page, path: 'top_activity'),
               ],
             ),
@@ -56,8 +68,11 @@ class AppRouter extends _$AppRouter {
               page: MarksRoute.page,
               path: 'marks',
               children: [
-                RedirectRoute(path: '', redirectTo: 'places_marks'),
-                AutoRoute(page: PlacesMarksRoute.page, path: 'places_marks'),
+                AutoRoute(
+                  page: PlacesMarksRoute.page,
+                  path: 'places_marks',
+                  initial: true,
+                ),
                 AutoRoute(page: RoutesMarksRoute.page, path: 'routes_marks'),
                 AutoRoute(page: EventsMarksRoute.page, path: 'events_marks'),
                 AutoRoute(page: SortPointsMarksRoute.page, path: 'sort_points_marks'),
@@ -67,18 +82,29 @@ class AppRouter extends _$AppRouter {
               page: ProfileRoute.page,
               path: 'profile',
               children: [
-                RedirectRoute(path: '', redirectTo: 'user_profile'),
-                AutoRoute(page: UserProfileRoute.page, path: 'user_profile', children: [
-                  AutoRoute(page: ReportsUserRoute.page, path: 'reports_user'),
-                  AutoRoute(page: SettingsUserRoute.page, path: 'settings_user'),
-                  AutoRoute(page: StatisticsUserRoute.page, path: 'statistics_user'),
-                ]),
-                AutoRoute(page: LogInProfileRoute.page, path: 'log_in'),
+                AutoRoute(page: LogInProfileRoute.page, initial: true, path: 'log_in'),
                 AutoRoute(page: SignInProfileRoute.page, path: 'sign_in'),
+                AutoRoute(
+                  page: UserProfileRoute.page,
+                  path: 'user_profile',
+                  children: [
+                    AutoRoute(
+                      page: ReportsUserRoute.page,
+                      path: 'reports_user',
+                      initial: true,
+                    ),
+                    AutoRoute(page: SettingsUserRoute.page, path: 'settings_user'),
+                    AutoRoute(page: StatisticsUserRoute.page, path: 'statistics_user'),
+                  ],
+                ),
               ],
             ),
             AutoRoute(page: NewReportRoute.page, path: 'new_report'),
           ],
         ),
+        AutoRoute(page: PlaceDetailReviewRoute.page, path: '/place/:id'),
+        AutoRoute(page: RouteDetailReviewRoute.page, path: '/route/:id'),
+        AutoRoute(page: EventDetailReviewRoute.page, path: '/event/:id'),
+        AutoRoute(page: SortPointDetailReviewRoute.page, path: '/sortPoint/:id'),
       ];
 }

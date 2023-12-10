@@ -21,6 +21,7 @@ class _StatisticsUserPageState extends State<StatisticsUserPage> {
           const WasteWidget(),
           const ObjectCounterWidget(),
           const ActivityWidget(),
+          const SizedBox(),
         ].withSpaceBetween(height: 10),
       ),
     );
@@ -386,7 +387,7 @@ class ActivityWidget extends StatelessWidget {
                   alignment: WrapAlignment.center,
                   children: [
                     SvgPicture.asset(
-                      ImgsControllerService.butteryRating.url(),
+                      ImgsControllerService.reportRating.url(),
                       fit: BoxFit.cover,
                     ),
                     const Text(
@@ -413,7 +414,7 @@ class ActivityWidget extends StatelessWidget {
                   alignment: WrapAlignment.center,
                   children: [
                     SvgPicture.asset(
-                      ImgsControllerService.lampRating.url(),
+                      ImgsControllerService.ratingRating.url(),
                       fit: BoxFit.cover,
                     ),
                     const Text(
@@ -440,7 +441,7 @@ class ActivityWidget extends StatelessWidget {
                   alignment: WrapAlignment.center,
                   children: [
                     SvgPicture.asset(
-                      ImgsControllerService.paperRating.url(),
+                      ImgsControllerService.photoRating.url(),
                       fit: BoxFit.cover,
                     ),
                     const Text(
@@ -456,7 +457,7 @@ class ActivityWidget extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 17,
                   ),
-                )
+                ),
               ],
             ),
           ].withSpaceBetween(height: 12),
