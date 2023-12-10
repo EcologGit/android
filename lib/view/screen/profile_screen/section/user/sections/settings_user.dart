@@ -59,7 +59,11 @@ class PersonalInfoWidget extends StatelessWidget {
                       children: [
                         Text(
                           'Name ',
-                          style: TextStyle(color: Colors.grey, fontSize: 16),
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                          ),
                         ),
                         Icon(
                           Icons.keyboard_arrow_right,
@@ -78,7 +82,11 @@ class PersonalInfoWidget extends StatelessWidget {
                       children: [
                         Text(
                           'surname',
-                          style: TextStyle(color: Colors.grey, fontSize: 16),
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                          ),
                         ),
                         Icon(
                           Icons.keyboard_arrow_right,
@@ -97,7 +105,11 @@ class PersonalInfoWidget extends StatelessWidget {
                       children: [
                         Text(
                           'sex',
-                          style: TextStyle(color: Colors.grey, fontSize: 16),
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                          ),
                         ),
                         Icon(
                           Icons.keyboard_arrow_right,
@@ -116,7 +128,11 @@ class PersonalInfoWidget extends StatelessWidget {
                       children: [
                         Text(
                           '01.01.2000',
-                          style: TextStyle(color: Colors.grey, fontSize: 16),
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                          ),
                         ),
                         Icon(
                           Icons.keyboard_arrow_right,
@@ -135,7 +151,11 @@ class PersonalInfoWidget extends StatelessWidget {
                       children: [
                         Text(
                           'Profession',
-                          style: TextStyle(color: Colors.grey, fontSize: 16),
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                          ),
                         ),
                         Icon(
                           Icons.keyboard_arrow_right,
@@ -197,7 +217,11 @@ class ApplicationWidget extends StatelessWidget {
                       children: [
                         Text(
                           'Светлая',
-                          style: TextStyle(color: Colors.grey, fontSize: 16),
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                          ),
                         ),
                         Icon(
                           Icons.keyboard_arrow_right,
@@ -216,7 +240,11 @@ class ApplicationWidget extends StatelessWidget {
                       children: [
                         Text(
                           'Русский',
-                          style: TextStyle(color: Colors.grey, fontSize: 16),
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                          ),
                         ),
                         Icon(
                           Icons.keyboard_arrow_right,
@@ -269,7 +297,11 @@ class AccountWidget extends StatelessWidget {
                     children: [
                       Text(
                         'username',
-                        style: TextStyle(color: Colors.grey, fontSize: 16),
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
+                        ),
                       ),
                       Icon(
                         Icons.keyboard_arrow_right,
@@ -288,7 +320,11 @@ class AccountWidget extends StatelessWidget {
                     children: [
                       Text(
                         '+7(000)000-00-00',
-                        style: TextStyle(color: Colors.grey, fontSize: 16),
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
+                        ),
                       ),
                       Icon(
                         Icons.keyboard_arrow_right,
@@ -306,8 +342,12 @@ class AccountWidget extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'example@email.com',
-                        style: TextStyle(color: Colors.grey, fontSize: 16),
+                        'email@email.com',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
+                        ),
                       ),
                       Icon(
                         Icons.keyboard_arrow_right,
@@ -336,7 +376,9 @@ class AccountWidget extends StatelessWidget {
           padding: const EdgeInsets.only(top: 4, bottom: 12),
           width: double.infinity,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              context.router.pop();
+            },
             style: ElevatedButton.styleFrom(
               foregroundColor: Colors.white,
               backgroundColor: Colors.black,

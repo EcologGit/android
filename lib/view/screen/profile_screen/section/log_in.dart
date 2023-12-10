@@ -40,7 +40,7 @@ class _LogInProfilePageState extends State<LogInProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:const Text('Вход'),
+        title: const Text('Вход'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -57,7 +57,6 @@ class _LogInProfilePageState extends State<LogInProfilePage> {
                 child: Column(
                   children: [
                     TextFormField(
-                      cursorColor: ThemeManager.activeColor,
                       validator: (value) => validateEmail(value),
                       controller: controllerEmail,
                       decoration: const InputDecoration(
@@ -77,7 +76,6 @@ class _LogInProfilePageState extends State<LogInProfilePage> {
                       indent: 20,
                     ),
                     TextFormField(
-                      cursorColor: ThemeManager.activeColor,
                       obscureText: !_passwordVisible,
                       validator: (value) => validatePassword(value),
                       controller: controllerPassword,
@@ -113,10 +111,12 @@ class _LogInProfilePageState extends State<LogInProfilePage> {
               padding: const EdgeInsets.only(top: 15),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(),
-                onPressed: () {},
+                onPressed: () {
+                  context.router.push(UserProfileRoute());
+                },
                 child: Wrap(
                   crossAxisAlignment: WrapCrossAlignment.center,
-                  spacing: 10,
+                  spacing: 5,
                   children: [
                     RotationTransition(
                       turns: const AlwaysStoppedAnimation(270 / 360),

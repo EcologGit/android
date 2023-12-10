@@ -62,6 +62,7 @@ class _MainScreenState extends State<MainScreen> {
           '/main/marks/routes_marks',
           '/main/marks/events_marks',
           '/main/marks/sort_points_marks',
+          '/main/new_report',
           '/main/profile/log_in',
           '/main/profile/sign_in',
           '/main/profile/user_profile',

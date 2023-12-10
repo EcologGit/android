@@ -26,14 +26,16 @@ class _ReviewScreenState extends State<ReviewScreen> {
         RoutesReviewRoute(),
         EventsReviewRoute(),
         SortPointsReviewRoute(),
-        // TestDemoRoute(),
       ],
       builder: (context, child) {
         return Scaffold(
           appBar: AppBar(
             title: const Text('Обзор'),
             actions: const [
-              Icon(Icons.search),
+              Padding(
+                child: Icon(Icons.search),
+                padding: EdgeInsets.all(12),
+              ),
             ],
           ),
           body: Column(

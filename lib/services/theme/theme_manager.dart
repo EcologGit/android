@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class ThemeManager {
   static const defaultColorDart = Color.fromRGBO(36, 40, 44, 1);
   static const activeColor = Color.fromRGBO(211, 243, 107, 1);
+  static const activeColorDim = Color.fromRGBO(223, 240, 165, 1);
+
   static const defaultBackgroundColor = Color.fromRGBO(247, 246, 240, 1.0);
   static const defaultPlaceholderColor = Color.fromRGBO(189, 189, 189, 1);
 
@@ -48,6 +50,11 @@ class ThemeManager {
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: defaultColorDart,
       foregroundColor: Colors.white,
+    ),
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: activeColor,
+      selectionColor: activeColorDim,
+      selectionHandleColor: activeColor,
     ),
   );
 }

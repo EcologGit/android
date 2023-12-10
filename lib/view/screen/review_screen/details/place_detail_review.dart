@@ -110,6 +110,117 @@ class PlaceDetailReviewPage extends StatelessWidget {
   }
 }
 
+class RatingWidget extends StatelessWidget {
+  const RatingWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25),
+        color: Colors.white,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(4),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Рейтинг',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Wrap(
+                  spacing: 8,
+                  alignment: WrapAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      ImgsControllerService.routeRating.url(),
+                      fit: BoxFit.cover,
+                    ),
+                    const Text(
+                      'Доступность',
+                      style: TextStyle(
+                        fontSize: 17,
+                      ),
+                    )
+                  ],
+                ),
+                const Text(
+                  '0',
+                  style: TextStyle(
+                    fontSize: 17,
+                  ),
+                )
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Wrap(
+                  spacing: 8,
+                  alignment: WrapAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      ImgsControllerService.natureRating.url(),
+                      fit: BoxFit.cover,
+                    ),
+                    const Text(
+                      'Красота',
+                      style: TextStyle(
+                        fontSize: 17,
+                      ),
+                    )
+                  ],
+                ),
+                const Text(
+                  '0',
+                  style: TextStyle(
+                    fontSize: 17,
+                  ),
+                )
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Wrap(
+                  spacing: 8,
+                  alignment: WrapAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      ImgsControllerService.sortRating.url(),
+                      fit: BoxFit.cover,
+                    ),
+                    const Text(
+                      'Чистота',
+                      style: TextStyle(
+                        fontSize: 17,
+                      ),
+                    )
+                  ],
+                ),
+                const Text(
+                  '0',
+                  style: TextStyle(
+                    fontSize: 17,
+                  ),
+                ),
+              ],
+            ),
+          ].withSpaceBetween(height: 12),
+        ),
+      ),
+    );
+  }
+}
+
 class WasteWidget extends StatelessWidget {
   const WasteWidget({
     super.key,
@@ -292,117 +403,6 @@ class WasteWidget extends StatelessWidget {
                     fontSize: 17,
                   ),
                 )
-              ],
-            ),
-          ].withSpaceBetween(height: 12),
-        ),
-      ),
-    );
-  }
-}
-
-class RatingWidget extends StatelessWidget {
-  const RatingWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
-        color: Colors.white,
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(4),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Рейтинг',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Wrap(
-                  spacing: 8,
-                  alignment: WrapAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      ImgsControllerService.routeRating.url(),
-                      fit: BoxFit.cover,
-                    ),
-                    const Text(
-                      'Доступность',
-                      style: TextStyle(
-                        fontSize: 17,
-                      ),
-                    )
-                  ],
-                ),
-                const Text(
-                  '0',
-                  style: TextStyle(
-                    fontSize: 17,
-                  ),
-                )
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Wrap(
-                  spacing: 8,
-                  alignment: WrapAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      ImgsControllerService.natureRating.url(),
-                      fit: BoxFit.cover,
-                    ),
-                    const Text(
-                      'Красота',
-                      style: TextStyle(
-                        fontSize: 17,
-                      ),
-                    )
-                  ],
-                ),
-                const Text(
-                  '0',
-                  style: TextStyle(
-                    fontSize: 17,
-                  ),
-                )
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Wrap(
-                  spacing: 8,
-                  alignment: WrapAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      ImgsControllerService.sortRating.url(),
-                      fit: BoxFit.cover,
-                    ),
-                    const Text(
-                      'Чистота',
-                      style: TextStyle(
-                        fontSize: 17,
-                      ),
-                    )
-                  ],
-                ),
-                const Text(
-                  '0',
-                  style: TextStyle(
-                    fontSize: 17,
-                  ),
-                ),
               ],
             ),
           ].withSpaceBetween(height: 12),

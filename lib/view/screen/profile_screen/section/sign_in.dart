@@ -155,7 +155,6 @@ class _SignInProfileWidgetState extends State<SignInProfileWidget> {
                   child: Column(
                     children: [
                       TextFormField(
-                        cursorColor: ThemeManager.activeColor,
                         validator: (value) => validateName(value),
                         controller: controllerFirstName,
                         decoration: const InputDecoration(
@@ -176,7 +175,6 @@ class _SignInProfileWidgetState extends State<SignInProfileWidget> {
                         indent: 20,
                       ),
                       TextFormField(
-                        cursorColor: ThemeManager.activeColor,
                         validator: (value) => validateName(value),
                         controller: controllerLastName,
                         decoration: const InputDecoration(
@@ -197,7 +195,6 @@ class _SignInProfileWidgetState extends State<SignInProfileWidget> {
                         indent: 20,
                       ),
                       TextFormField(
-                        cursorColor: ThemeManager.activeColor,
                         validator: (value) => validateName(value),
                         controller: controllerNickname,
                         decoration: const InputDecoration(
@@ -258,7 +255,6 @@ class _SignInProfileWidgetState extends State<SignInProfileWidget> {
                         indent: 20,
                       ),
                       TextFormField(
-                        cursorColor: ThemeManager.activeColor,
                         validator: (value) => validateName(value),
                         controller: controllerActivity,
                         decoration: const InputDecoration(
@@ -278,7 +274,6 @@ class _SignInProfileWidgetState extends State<SignInProfileWidget> {
                         indent: 20,
                       ),
                       TextFormField(
-                        cursorColor: ThemeManager.activeColor,
                         validator: (value) => validateMobile(value),
                         controller: controllerPhone,
                         maxLength: 15,
@@ -301,7 +296,6 @@ class _SignInProfileWidgetState extends State<SignInProfileWidget> {
                         indent: 20,
                       ),
                       TextFormField(
-                        cursorColor: ThemeManager.activeColor,
                         validator: (value) => validateEmail(value),
                         controller: controllerEmail,
                         decoration: const InputDecoration(
@@ -321,7 +315,6 @@ class _SignInProfileWidgetState extends State<SignInProfileWidget> {
                         indent: 20,
                       ),
                       TextFormField(
-                        cursorColor: ThemeManager.activeColor,
                         obscureText: !_passwordVisible,
                         validator: (value) => validatePassword(value),
                         controller: controllerPassword,
@@ -353,7 +346,6 @@ class _SignInProfileWidgetState extends State<SignInProfileWidget> {
                         indent: 20,
                       ),
                       TextFormField(
-                        cursorColor: ThemeManager.activeColor,
                         obscureText: !_repeatPasswordVisible,
                         validator: (value) => validatePassword(value),
                         controller: controllerRepeatPassword,
