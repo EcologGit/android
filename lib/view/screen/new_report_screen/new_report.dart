@@ -1,8 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:eco/bloc/type_and_name_object/type_and_name_object.dart';
 import 'package:eco/main.dart';
 import 'package:eco/services/imgs/imgs_controller_service.dart';
+import 'package:eco/services/router/router.dart';
 import 'package:eco/services/theme/theme_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 @RoutePage()
@@ -16,6 +19,7 @@ class NewReportScreen extends StatefulWidget {
 class _NewReportScreenState extends State<NewReportScreen> {
   @override
   Widget build(BuildContext context) {
+    final myRoute = AutoRouter.of(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -30,7 +34,7 @@ class _NewReportScreenState extends State<NewReportScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              InfoOfObject(),
+              InfoOfObject(myRoute: myRoute),
               AddingPhoto(),
               DescriptionReport(),
               RatingWidget(),
@@ -45,11 +49,19 @@ class _NewReportScreenState extends State<NewReportScreen> {
   }
 }
 
-class InfoOfObject extends StatelessWidget {
+class InfoOfObject extends StatefulWidget {
   const InfoOfObject({
+    required this.myRoute,
     super.key,
   });
 
+  final StackRouter myRoute;
+
+  @override
+  State<InfoOfObject> createState() => _InfoOfObjectState();
+}
+
+class _InfoOfObjectState extends State<InfoOfObject> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -71,19 +83,11 @@ class InfoOfObject extends StatelessWidget {
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const ListTile(
+                  ListTile(
                     contentPadding: EdgeInsets.zero,
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                          'Место',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
                         Icon(
                           Icons.keyboard_arrow_right,
                           color: Colors.grey,
@@ -93,8 +97,11 @@ class InfoOfObject extends StatelessWidget {
                     ),
                     title: Text('Тип и название объекта'),
                     visualDensity: VisualDensity(vertical: -2),
+                    onTap: () {
+                      context.pushRoute(TypeAndNameObjectRoute());
+                    },
                   ),
-                  const ListTile(
+                  ListTile(
                     contentPadding: EdgeInsets.zero,
                     trailing: Icon(
                       Icons.keyboard_arrow_right,
@@ -103,6 +110,9 @@ class InfoOfObject extends StatelessWidget {
                     ),
                     title: Text('Точка сортировки'),
                     visualDensity: VisualDensity(vertical: -2),
+                    onTap: () {
+                      widget.myRoute.push(SelectionSortPointsRoute());
+                    },
                   ),
                 ].withDividerBetween()),
           ),
@@ -229,10 +239,19 @@ class RatingWidget extends StatelessWidget {
                     )
                   ],
                 ),
-                const Text(
-                  '0',
-                  style: TextStyle(
-                    fontSize: 17,
+                SizedBox(
+                  width: 40,
+                  height: 30,
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: '0',
+                      border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black45)),
+                      contentPadding: EdgeInsets.only(left: 5),
+                      focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black45)),
+                    ),
+                    style: TextStyle(
+                      fontSize: 17,
+                    ),
                   ),
                 )
               ],
@@ -256,10 +275,19 @@ class RatingWidget extends StatelessWidget {
                     )
                   ],
                 ),
-                const Text(
-                  '0',
-                  style: TextStyle(
-                    fontSize: 17,
+                SizedBox(
+                  width: 40,
+                  height: 30,
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: '0',
+                      border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black45)),
+                      contentPadding: EdgeInsets.only(left: 5),
+                      focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black45)),
+                    ),
+                    style: TextStyle(
+                      fontSize: 17,
+                    ),
                   ),
                 )
               ],
@@ -283,10 +311,19 @@ class RatingWidget extends StatelessWidget {
                     )
                   ],
                 ),
-                const Text(
-                  '0',
-                  style: TextStyle(
-                    fontSize: 17,
+                SizedBox(
+                  width: 40,
+                  height: 30,
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: '0',
+                      border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black45)),
+                      contentPadding: EdgeInsets.only(left: 5),
+                      focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black45)),
+                    ),
+                    style: TextStyle(
+                      fontSize: 17,
+                    ),
                   ),
                 ),
               ],
@@ -339,11 +376,31 @@ class WasteWidget extends StatelessWidget {
                     )
                   ],
                 ),
-                const Text(
-                  '0,0 кг',
-                  style: TextStyle(
-                    fontSize: 17,
-                  ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 40,
+                      height: 30,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          hintText: '0',
+                          border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black45)),
+                          contentPadding: EdgeInsets.only(left: 5),
+                          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black45)),
+                        ),
+                        style: TextStyle(
+                          fontSize: 17,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 5),
+                    const Text(
+                      'кг',
+                      style: TextStyle(
+                        fontSize: 17,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -366,12 +423,32 @@ class WasteWidget extends StatelessWidget {
                     )
                   ],
                 ),
-                const Text(
-                  '0,0 кг',
-                  style: TextStyle(
-                    fontSize: 17,
-                  ),
-                )
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 40,
+                      height: 30,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          hintText: '0',
+                          border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black45)),
+                          contentPadding: EdgeInsets.only(left: 5),
+                          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black45)),
+                        ),
+                        style: TextStyle(
+                          fontSize: 17,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 5),
+                    const Text(
+                      'кг',
+                      style: TextStyle(
+                        fontSize: 17,
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
             Row(
@@ -393,12 +470,32 @@ class WasteWidget extends StatelessWidget {
                     )
                   ],
                 ),
-                const Text(
-                  '0,0 кг',
-                  style: TextStyle(
-                    fontSize: 17,
-                  ),
-                )
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 40,
+                      height: 30,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          hintText: '0',
+                          border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black45)),
+                          contentPadding: EdgeInsets.only(left: 5),
+                          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black45)),
+                        ),
+                        style: TextStyle(
+                          fontSize: 17,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 5),
+                    const Text(
+                      'кг',
+                      style: TextStyle(
+                        fontSize: 17,
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
             Row(
@@ -420,12 +517,32 @@ class WasteWidget extends StatelessWidget {
                     )
                   ],
                 ),
-                const Text(
-                  '0,0 кг',
-                  style: TextStyle(
-                    fontSize: 17,
-                  ),
-                )
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 40,
+                      height: 30,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          hintText: '0',
+                          border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black45)),
+                          contentPadding: EdgeInsets.only(left: 5),
+                          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black45)),
+                        ),
+                        style: TextStyle(
+                          fontSize: 17,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 5),
+                    const Text(
+                      'кг',
+                      style: TextStyle(
+                        fontSize: 17,
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
             Row(
@@ -447,12 +564,32 @@ class WasteWidget extends StatelessWidget {
                     )
                   ],
                 ),
-                const Text(
-                  '0,0 кг',
-                  style: TextStyle(
-                    fontSize: 17,
-                  ),
-                )
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 40,
+                      height: 30,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          hintText: '0',
+                          border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black45)),
+                          contentPadding: EdgeInsets.only(left: 5),
+                          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black45)),
+                        ),
+                        style: TextStyle(
+                          fontSize: 17,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 5),
+                    const Text(
+                      'кг',
+                      style: TextStyle(
+                        fontSize: 17,
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
             Row(
@@ -474,12 +611,32 @@ class WasteWidget extends StatelessWidget {
                     )
                   ],
                 ),
-                const Text(
-                  '0,0 кг',
-                  style: TextStyle(
-                    fontSize: 17,
-                  ),
-                )
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 40,
+                      height: 30,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          hintText: '0',
+                          border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black45)),
+                          contentPadding: EdgeInsets.only(left: 5),
+                          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black45)),
+                        ),
+                        style: TextStyle(
+                          fontSize: 17,
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 5),
+                    const Text(
+                      'кг',
+                      style: TextStyle(
+                        fontSize: 17,
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ].withSpaceBetween(height: 12),
@@ -494,45 +651,55 @@ class PublishReport extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: double.infinity,
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: ThemeManager.defaultPlaceholderColor),
-            onPressed: () {},
-            child: const Wrap(
-              crossAxisAlignment: WrapCrossAlignment.center,
-              spacing: 6,
-              children: [
-                Icon(
-                  Icons.arrow_upward,
-                  size: 20,
-                  color: Colors.white,
-                ),
-                Text(
-                  'ОПУБЛИКОВАТЬ',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ],
-            ),
-          ),
-        ),
-        TextButton(
-          onPressed: () {},
-          child: Wrap(
-            spacing: 6,
-            crossAxisAlignment: WrapCrossAlignment.center,
+    return BlocProvider(
+      create: (context) => TypeAndNameObjectBloc(),
+      child: BlocBuilder<TypeAndNameObjectBloc, TypeAndNameObjectState>(
+        builder: (context, state) {
+          return Column(
             children: [
-              Icon(
-                Icons.save,
-                size: 16,
+              Container(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(backgroundColor: ThemeManager.defaultColorDart),
+                  onPressed: () {
+                    context.read<TypeAndNameObjectBloc>().add(CreateReport());
+                  },
+                  child: const Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    spacing: 6,
+                    children: [
+                      Icon(
+                        Icons.upload,
+                        size: 20,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        'ОПУБЛИКОВАТЬ',
+                        style:
+                            TextStyle(color: Colors.white, letterSpacing: 0.4, fontWeight: FontWeight.w700),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              Text('СОХРАНИТЬ ЧЕРНОВИК')
+              TextButton(
+                onPressed: () {},
+                child: Wrap(
+                  spacing: 6,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.save,
+                      size: 16,
+                    ),
+                    Text('СОХРАНИТЬ ЧЕРНОВИК')
+                  ],
+                ),
+              )
             ],
-          ),
-        )
-      ],
+          );
+        },
+      ),
     );
   }
 }

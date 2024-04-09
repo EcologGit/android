@@ -22,9 +22,6 @@ class _ActivityScreenState extends State<ActivityScreen> {
         return Scaffold(
           appBar: AppBar(
             title: const Text('Активность'),
-            actions: const [
-              Icon(Icons.search),
-            ],
           ),
           body: Padding(
             padding: const EdgeInsets.all(15),

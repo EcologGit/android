@@ -11,7 +11,7 @@ class ThemeManager {
   ThemeData get getThemeDataAndroid => _themeDataAndroid;
 
   final _themeDataAndroid = ThemeData(
-    // fontFamily: "Pro-Rounded-Regular",
+    fontFamily: "Pro-Rounded-Regular",
     useMaterial3: true,
     scaffoldBackgroundColor: defaultBackgroundColor,
     appBarTheme: const AppBarTheme(
@@ -32,7 +32,6 @@ class ThemeManager {
         foregroundColor: defaultColorDart,
       ),
     ),
-
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
       unselectedIconTheme: IconThemeData(color: defaultColorDart),

@@ -28,55 +28,32 @@ enum ImgsControllerService {
 extension ImgsControllerServiceExtension on ImgsControllerService {
   String url([String format = 'svg']) {
     final resolution = format;
-    switch (this) {
-      case ImgsControllerService.defaultImg:
-        return 'assets/images/default_img_card.$resolution';
-      case ImgsControllerService.favoriteButton:
-        return 'assets/images/favorite_button.$resolution';
-      case ImgsControllerService.mapButton:
-        return 'assets/images/map_button.$resolution';
-      case ImgsControllerService.newReportButton:
-        return 'assets/images/newReport_button.$resolution';
-      case ImgsControllerService.shareButton:
-        return 'assets/images/share_button.$resolution';
-      case ImgsControllerService.changeButton:
-        return 'assets/images/change_button.$resolution';
-      case ImgsControllerService.publicButton:
-        return 'assets/images/public_button.$resolution';
-      case ImgsControllerService.reviewBottomNavigation:
-        return 'assets/images/review_bottom_navigation.$resolution';
-      case ImgsControllerService.activityBottomNavigation:
-        return 'assets/images/activity_bottom_navigation.$resolution';
-      case ImgsControllerService.newReportBottomNavigation:
-        return 'assets/images/newReport_bottom_navigation.$resolution';
-      case ImgsControllerService.marksBottomNavigation:
-        return 'assets/images/marks_bottom_navigation.$resolution';
-      case ImgsControllerService.profileBottomNavigation:
-        return 'assets/images/profile_bottom_navigation.$resolution';
-      case ImgsControllerService.natureRating:
-        return 'assets/images/rating/nature_rating.$resolution';
-      case ImgsControllerService.sortRating:
-        return 'assets/images/rating/sort_rating.$resolution';
-      case ImgsControllerService.routeRating:
-        return 'assets/images/rating/route_rating.$resolution';
-      case ImgsControllerService.butteryRating:
-        return 'assets/images/rating/buttery_rating.$resolution';
-      case ImgsControllerService.glassRating:
-        return 'assets/images/rating/glass_rating.$resolution';
-      case ImgsControllerService.lampRating:
-        return 'assets/images/rating/lamp_rating.$resolution';
-      case ImgsControllerService.metalRating:
-        return 'assets/images/rating/metal_rating.$resolution';
-      case ImgsControllerService.paperRating:
-        return 'assets/images/rating/paper_rating.$resolution';
-      case ImgsControllerService.plasticRating:
-        return 'assets/images/rating/plastic_rating.$resolution';
-      case ImgsControllerService.reportRating:
-        return 'assets/images/rating/report_rating.$resolution';
-      case ImgsControllerService.ratingRating:
-        return 'assets/images/rating/rating_rating.$resolution';
-      case ImgsControllerService.photoRating:
-        return 'assets/images/rating/photo_rating.$resolution';
-    }
+    const String images = 'assets/images';
+    return switch (this) {
+      ImgsControllerService.defaultImg => '$images/default_img_card.$resolution',
+      ImgsControllerService.favoriteButton => '$images/favorite_button.$resolution',
+      ImgsControllerService.mapButton => '$images/map_button.$resolution',
+      ImgsControllerService.newReportButton => '$images/newReport_button.$resolution',
+      ImgsControllerService.shareButton => '$images/share_button.$resolution',
+      ImgsControllerService.changeButton => '$images/change_button.$resolution',
+      ImgsControllerService.publicButton => '$images/public_button.$resolution',
+      ImgsControllerService.reviewBottomNavigation => '$images/review_bottom_navigation.$resolution',
+      ImgsControllerService.activityBottomNavigation => '$images/activity_bottom_navigation.$resolution',
+      ImgsControllerService.newReportBottomNavigation => '$images/newReport_bottom_navigation.$resolution',
+      ImgsControllerService.marksBottomNavigation => '$images/marks_bottom_navigation.$resolution',
+      ImgsControllerService.profileBottomNavigation => '$images/profile_bottom_navigation.$resolution',
+      ImgsControllerService.natureRating => '$images/rating/nature_rating.$resolution',
+      ImgsControllerService.sortRating => '$images/rating/sort_rating.$resolution',
+      ImgsControllerService.routeRating => '$images/rating/route_rating.$resolution',
+      ImgsControllerService.butteryRating => '$images/rating/buttery_rating.$resolution',
+      ImgsControllerService.glassRating => '$images/rating/glass_rating.$resolution',
+      ImgsControllerService.lampRating => '$images/rating/lamp_rating.$resolution',
+      ImgsControllerService.metalRating => '$images/rating/metal_rating.$resolution',
+      ImgsControllerService.paperRating => '$images/rating/paper_rating.$resolution',
+      ImgsControllerService.plasticRating => '$images/rating/plastic_rating.$resolution',
+      ImgsControllerService.reportRating => '$images/rating/report_rating.$resolution',
+      ImgsControllerService.ratingRating => '$images/rating/rating_rating.$resolution',
+      ImgsControllerService.photoRating => '$images/rating/photo_rating.$resolution',
+    };
   }
 }

@@ -48,7 +48,7 @@ class _MainScreenState extends State<MainScreen> {
         ReviewRoute(),
         ActivityRoute(),
         NewReportRoute(),
-        MarksRoute(),
+        // MarksRoute(),
         ProfileRoute(),
       ],
       builder: (context, child) {
@@ -90,13 +90,14 @@ class _MainScreenState extends State<MainScreen> {
                   assetName: ImgsControllerService.activityBottomNavigation.url(), label: 'Активность'),
               createBottomNavigation(
                   assetName: ImgsControllerService.newReportBottomNavigation.url(), label: 'Новый отчет'),
-              createBottomNavigation(
-                  assetName: ImgsControllerService.marksBottomNavigation.url(), label: 'Отметки'),
+              // createBottomNavigation(
+              //     assetName: ImgsControllerService.marksBottomNavigation.url(), label: 'Отметки'),
               createBottomNavigation(
                   assetName: ImgsControllerService.profileBottomNavigation.url(), label: 'Профиль'),
             ],
           ),
-          floatingActionButton: inactiveFloatingButtonList.contains(childRouter)
+          // floatingActionButton: inactiveFloatingButtonList.contains(childRouter)
+          floatingActionButton: true
               ? const SizedBox()
               : SizedBox(
                   height: 44,

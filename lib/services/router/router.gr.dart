@@ -144,6 +144,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const RoutesReviewPage(),
       );
     },
+    SelectionSortPointsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SelectionSortPointsScreen(),
+      );
+    },
     SettingsUserRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -191,6 +197,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const TopActivityPage(),
+      );
+    },
+    TypeAndNameObjectRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const TypeAndNameObjectScreen(),
       );
     },
     UserProfileRoute.name: (routeData) {
@@ -530,6 +542,20 @@ class RoutesReviewRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SelectionSortPointsScreen]
+class SelectionSortPointsRoute extends PageRouteInfo<void> {
+  const SelectionSortPointsRoute({List<PageRouteInfo>? children})
+      : super(
+          SelectionSortPointsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SelectionSortPointsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [SettingsUserPage]
 class SettingsUserRoute extends PageRouteInfo<void> {
   const SettingsUserRoute({List<PageRouteInfo>? children})
@@ -649,6 +675,20 @@ class TopActivityRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'TopActivityRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TypeAndNameObjectScreen]
+class TypeAndNameObjectRoute extends PageRouteInfo<void> {
+  const TypeAndNameObjectRoute({List<PageRouteInfo>? children})
+      : super(
+          TypeAndNameObjectRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TypeAndNameObjectRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

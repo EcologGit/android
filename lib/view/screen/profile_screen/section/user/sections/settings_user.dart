@@ -1,7 +1,10 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:eco/bloc/login/login_bloc.dart';
 import 'package:eco/main.dart';
+import 'package:eco/services/authorization/repos/authentication_repository.dart';
 import 'package:eco/services/theme/theme_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class SettingsUserPage extends StatefulWidget {
@@ -58,7 +61,7 @@ class PersonalInfoWidget extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          'Name ',
+                          'Евгений ',
                           style: TextStyle(
                             color: Colors.grey,
                             fontSize: 16,
@@ -81,7 +84,7 @@ class PersonalInfoWidget extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          'surname',
+                          'Сливкин',
                           style: TextStyle(
                             color: Colors.grey,
                             fontSize: 16,
@@ -104,7 +107,7 @@ class PersonalInfoWidget extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          'sex',
+                          'муж',
                           style: TextStyle(
                             color: Colors.grey,
                             fontSize: 16,
@@ -127,7 +130,7 @@ class PersonalInfoWidget extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          '01.01.2000',
+                          '01.06.2000',
                           style: TextStyle(
                             color: Colors.grey,
                             fontSize: 16,
@@ -150,7 +153,7 @@ class PersonalInfoWidget extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          'Profession',
+                          'Студент',
                           style: TextStyle(
                             color: Colors.grey,
                             fontSize: 16,
@@ -187,7 +190,7 @@ class ApplicationWidget extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 6),
-          child: Text('Приложение', style: Theme.of(context).textTheme.titleMedium),
+          child: Text('Аккаунт', style: Theme.of(context).textTheme.titleMedium),
         ),
         Container(
           width: double.infinity,
@@ -375,21 +378,31 @@ class AccountWidget extends StatelessWidget {
         Container(
           padding: const EdgeInsets.only(top: 4, bottom: 12),
           width: double.infinity,
-          child: ElevatedButton(
-            onPressed: () {
-              context.router.pop();
-            },
-            style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.white,
-              backgroundColor: Colors.black,
+          child: BlocProvider(
+            create: (context) => LoginBloc(
+              authenticationRepository: RepositoryProvider.of<AuthenticationRepository>(context),
             ),
-            child: const Wrap(
-              spacing: 4,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                Icon(Icons.logout, size: 15),
-                Text('ВЫЙТИ ИЗ АККАУНТА'),
-              ],
+            child: BlocBuilder<LoginBloc, LoginState>(
+              builder: (context, state) {
+                return ElevatedButton(
+                  onPressed: () {
+                    context.router.maybePop();
+                    context.read<LoginBloc>().add(SignOut());
+                  },
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.black,
+                  ),
+                  child: const Wrap(
+                    spacing: 4,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      Icon(Icons.logout, size: 15),
+                      Text('ВЫЙТИ ИЗ АККАУНТА'),
+                    ],
+                  ),
+                );
+              },
             ),
           ),
         )

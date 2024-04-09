@@ -49,7 +49,7 @@ class UserCardDataWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text('Name\nSurname', style: Theme.of(context).textTheme.bodyLarge),
+                  Text('Евгений\nСливкин', style: Theme.of(context).textTheme.bodyLarge),
                   const Wrap(
                     crossAxisAlignment: WrapCrossAlignment.center,
                     spacing: 4,
@@ -58,7 +58,7 @@ class UserCardDataWidget extends StatelessWidget {
                         Icons.place,
                         size: 15,
                       ),
-                      Text('Locality'),
+                      Text('Москва'),
                     ],
                   ),
                   const Wrap(
@@ -69,7 +69,7 @@ class UserCardDataWidget extends StatelessWidget {
                         Icons.cake,
                         size: 15,
                       ),
-                      Text('01.01.2000'),
+                      Text('01.06.2000'),
                     ],
                   ),
                   const Wrap(
@@ -80,7 +80,7 @@ class UserCardDataWidget extends StatelessWidget {
                         Icons.business_center,
                         size: 15,
                       ),
-                      Text('Profession'),
+                      Text('Студент'),
                     ],
                   ),
                 ],

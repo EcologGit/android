@@ -72,7 +72,7 @@ class _ReportsUserPageState extends State<ReportsUserPage> {
                                 borderRadius: BorderRadius.circular(30),
                                 child: Image.asset(ImgsControllerService.defaultImg.url('png'),
                                     width: 24, height: 24)),
-                            const Text('Username'),
+                            const Text('Евгений Сливкин'),
                           ],
                         ),
                       ),

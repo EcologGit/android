@@ -1,7 +1,12 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:eco/bloc/routes/route_detail/route_detail.dart';
+import 'package:eco/data/models/detail/route_detail.dart';
 import 'package:eco/main.dart';
+import 'package:eco/services/api/api_service.dart';
+import 'package:eco/services/authorization/service/local_authentication_service.dart';
 import 'package:eco/services/imgs/imgs_controller_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -13,152 +18,200 @@ class RouteDetailReviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Маршрут $routeId',
-            style: const TextStyle(
-              fontSize: 15,
-            ),
-          ),
-          centerTitle: true,
-        ),
-        body: SingleChildScrollView(
-          physics: const ScrollPhysics(),
-          scrollDirection: Axis.vertical,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: double.infinity,
-                child: Image.asset(
-                  ImgsControllerService.defaultImg.url('png'),
-                  fit: BoxFit.cover,
+    return BlocProvider(
+      key: UniqueKey(),
+      create: (context) => RouteDetailBloc()..add(LoadDetailOfRoute(routeId: routeId)),
+      child: BlocBuilder<RouteDetailBloc, RouteDetailState>(
+        builder: (context, state) {
+          if (state is DetailRouteLoading)
+            return Scaffold(body: Center(child: CircularProgressIndicator.adaptive()));
+          else if (state is DetailRouteSuccess) {
+            final RouteDetail route = state.route;
+            final String srcNetworkImage =
+                '${ApiService(LocalAuthenticationService()).loadImage()}${route.objectInfo.photo}';
+            return Scaffold(
+                appBar: AppBar(
+                  title: Text(
+                    'Маршрут',
+                    style: const TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
+                  centerTitle: true,
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Name',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24,
+                body: SingleChildScrollView(
+                  physics: const ScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        color: Colors.black12,
+                        height: 300,
+                        width: double.infinity,
+                        child: Image.network(
+                          srcNetworkImage,
+                          fit: BoxFit.cover,
+                          loadingBuilder: (context, child, loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return Image.asset(
+                              ImgsControllerService.defaultImg.url('png'),
+                              fit: BoxFit.cover,
+                            );
+                          },
+                          errorBuilder: (context, error, stackTrace) {
+                            return Image.asset(
+                              ImgsControllerService.defaultImg.url('png'),
+                              fit: BoxFit.cover,
+                            );
+                          },
+                        ),
                       ),
-                    ),
-                    const Wrap(
-                      spacing: 3,
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.place,
-                          size: 12,
-                        ),
-                        Text('Locality'),
-                      ],
-                    ),
-                    const Wrap(
-                      spacing: 3,
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.flag_outlined,
-                          size: 12,
-                        ),
-                        Text('xx.xxxxxx'),
-                        Text('yy.yyyyyy'),
-                      ],
-                    ),
-                    const Wrap(
-                      spacing: 3,
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.flag,
-                          size: 12,
-                        ),
-                        Text('xx.xxxxxx'),
-                        Text('yy.yyyyyy'),
-                      ],
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.all(4.0),
-                      child: Wrap(
-                        spacing: 10,
-                        children: [
-                          Wrap(
-                            crossAxisAlignment: WrapCrossAlignment.center,
-                            spacing: 3,
-                            children: [
-                              Icon(
-                                Icons.straighten,
-                                size: 15,
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              route.objectInfo.name ?? '',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24,
                               ),
-                              Text(
-                                '0,0 км',
-                                style: TextStyle(
-                                  fontSize: 14,
+                            ),
+                            Wrap(
+                              spacing: 3,
+                              crossAxisAlignment: WrapCrossAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.place,
+                                  size: 12,
                                 ),
-                              )
-                            ],
-                          ),
-                          Wrap(
-                            crossAxisAlignment: WrapCrossAlignment.center,
-                            spacing: 3,
-                            children: [
-                              Icon(
-                                Icons.hourglass_bottom,
-                                size: 15,
+                                Text(route.objectInfo.locality ?? ''),
+                              ],
+                            ),
+                            Wrap(
+                              spacing: 3,
+                              crossAxisAlignment: WrapCrossAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.flag_outlined,
+                                  size: 12,
+                                ),
+                                Text(route.objectInfo.startE ?? ''),
+                                Text(route.objectInfo.endE ?? ''),
+                              ],
+                            ),
+                            Wrap(
+                              spacing: 3,
+                              crossAxisAlignment: WrapCrossAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.flag,
+                                  size: 12,
+                                ),
+                                Text(route.objectInfo.startN ?? ''),
+                                Text(route.objectInfo.endN ?? ''),
+                              ],
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(4.0),
+                              child: Wrap(
+                                spacing: 10,
+                                children: [
+                                  Wrap(
+                                    crossAxisAlignment: WrapCrossAlignment.center,
+                                    spacing: 3,
+                                    children: [
+                                      Icon(
+                                        Icons.straighten,
+                                        size: 15,
+                                      ),
+                                      Text(
+                                        route.objectInfo.length.toString(),
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  Wrap(
+                                    crossAxisAlignment: WrapCrossAlignment.center,
+                                    spacing: 3,
+                                    children: [
+                                      Icon(
+                                        Icons.hourglass_bottom,
+                                        size: 15,
+                                      ),
+                                      Text(
+                                        route.objectInfo.duration ?? '',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ],
                               ),
-                              Text(
-                                '0,0 ч',
-                                style: TextStyle(
-                                  fontSize: 14,
+                            ),
+                            Wrap(
+                              spacing: 10,
+                              crossAxisAlignment: WrapCrossAlignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                  ImgsControllerService.mapButton.url(),
+                                  fit: BoxFit.cover,
                                 ),
-                              )
+                                SvgPicture.asset(
+                                  ImgsControllerService.favoriteButton.url(),
+                                  fit: BoxFit.cover,
+                                ),
+                                SvgPicture.asset(
+                                  ImgsControllerService.newReportButton.url(),
+                                  fit: BoxFit.cover,
+                                ),
+                                SvgPicture.asset(
+                                  ImgsControllerService.shareButton.url(),
+                                  fit: BoxFit.cover,
+                                ),
+                              ],
+                            ),
+                            Text(
+                              route.objectInfo.description ?? '',
+                            ),
+                            RatingWidget(route: route),
+                            if (true) ...[
+                              const WasteWidget(),
                             ],
-                          ),
-                        ],
+                            if (state.actualsEvents.results.isNotEmpty) ...[
+                              CurrentEvents(
+                                actualsEvents: state.actualsEvents.results,
+                              ),
+                            ],
+                            if (state.nearestSortPoints.results.isNotEmpty) ...[
+                              CurrentSortPoints(
+                                nearestSortPoints: state.nearestSortPoints.results,
+                              ),
+                            ],
+                            if (false) ...[
+                              const ReportsWidget(),
+                            ]
+                          ].withSpaceBetween(height: 12),
+                        ),
                       ),
-                    ),
-                    Wrap(
-                      spacing: 10,
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          ImgsControllerService.mapButton.url(),
-                          fit: BoxFit.cover,
-                        ),
-                        SvgPicture.asset(
-                          ImgsControllerService.favoriteButton.url(),
-                          fit: BoxFit.cover,
-                        ),
-                        SvgPicture.asset(
-                          ImgsControllerService.newReportButton.url(),
-                          fit: BoxFit.cover,
-                        ),
-                        SvgPicture.asset(
-                          ImgsControllerService.shareButton.url(),
-                          fit: BoxFit.cover,
-                        ),
-                      ],
-                    ),
-                    const Text(
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc, elementum ac commodo, tristique consectetur tellus, senectus dui. Blandit accumsan, nisl, non sed at. Et sit arcu suspendisse dictum sem. Sit faucibus volutpat et lobortis sit felis etiam. Suspendisse risus massa, id in mollis ornare porttitor. Cras libero dui eget arcu nunc venenatis vel. Nunc ut libero sit risus ultricies.Morbi diam ut eget purus massa. Libero auctor faucibus amet, in viverra semper. Viverra nunc ligula turpis egestas ipsum vel. Risus cras pretium ridiculus sit. Tempor risus nunc tempor, vulputate ornare bibendum. Gravida in maecenas varius nulla. In amet, at lacus faucibus sed eu. Et, tincidunt purus semper sem diam.',
-                    ),
-                    const RatingWidget(),
-                    const WasteWidget(),
-                    const CurrentEvents(),
-                    const CurrentSortPoints(),
-                    const ReportsWidget(),
-                  ].withSpaceBetween(height: 12),
-                ),
+                    ],
+                  ),
+                ));
+          } else {
+            return Scaffold(
+              body: Center(
+                child: Text('Error'),
               ),
-            ],
-          ),
-        ));
+            );
+          }
+        },
+      ),
+    );
   }
 }
 
@@ -356,7 +409,10 @@ class WasteWidget extends StatelessWidget {
 class RatingWidget extends StatelessWidget {
   const RatingWidget({
     super.key,
+    required this.route,
   });
+
+  final RouteDetail route;
 
   @override
   Widget build(BuildContext context) {
@@ -395,8 +451,10 @@ class RatingWidget extends StatelessWidget {
                     )
                   ],
                 ),
-                const Text(
-                  '0',
+                Text(
+                  route.objectInfo.avgAvailability == null
+                      ? '0.0'
+                      : route.objectInfo.avgAvailability.toString(),
                   style: TextStyle(
                     fontSize: 17,
                   ),
@@ -422,8 +480,8 @@ class RatingWidget extends StatelessWidget {
                     )
                   ],
                 ),
-                const Text(
-                  '0',
+                Text(
+                  route.objectInfo.avgBeauty == null ? '0.0' : route.objectInfo.avgBeauty.toString(),
                   style: TextStyle(
                     fontSize: 17,
                   ),
@@ -449,8 +507,8 @@ class RatingWidget extends StatelessWidget {
                     )
                   ],
                 ),
-                const Text(
-                  '0',
+                Text(
+                  route.objectInfo.avgPurity == null ? '0.0' : route.objectInfo.avgPurity.toString(),
                   style: TextStyle(
                     fontSize: 17,
                   ),
@@ -465,7 +523,9 @@ class RatingWidget extends StatelessWidget {
 }
 
 class CurrentEvents extends StatelessWidget {
-  const CurrentEvents({super.key});
+  const CurrentEvents({super.key, required this.actualsEvents});
+
+  final actualsEvents;
 
   @override
   Widget build(BuildContext context) {
@@ -479,41 +539,93 @@ class CurrentEvents extends StatelessWidget {
             fontSize: 25,
           ),
         ),
-        Wrap(
-          spacing: 18,
+        Row(
           children: [
-            Wrap(
-              direction: Axis.vertical,
-              spacing: 10,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Image.asset(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Container(
+                    color: Colors.black12,
                     height: 171,
                     width: 171,
-                    ImgsControllerService.defaultImg.url('png'),
-                    fit: BoxFit.cover,
+                    child: Image.network(
+                      '${ApiService(LocalAuthenticationService()).loadImage()}${actualsEvents.first.photo}',
+                      fit: BoxFit.cover,
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Image.asset(
+                          height: 171,
+                          width: 171,
+                          ImgsControllerService.defaultImg.url('png'),
+                          fit: BoxFit.cover,
+                        );
+                      },
+                      errorBuilder: (context, error, stackTrace) {
+                        return Image.asset(
+                          height: 171,
+                          width: 171,
+                          ImgsControllerService.defaultImg.url('png'),
+                          fit: BoxFit.cover,
+                        );
+                      },
+                    ),
                   ),
                 ),
-                const Text('Name')
-              ],
-            ),
-            Wrap(
-              direction: Axis.vertical,
-              spacing: 10,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Image.asset(
-                    height: 171,
-                    width: 171,
-                    ImgsControllerService.defaultImg.url('png'),
-                    fit: BoxFit.cover,
+                SizedBox(height: 10),
+                SizedBox(
+                  child: Text(
+                    actualsEvents.first.name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                ),
-                const Text('Name')
+                )
               ],
             ),
+            SizedBox(width: 15),
+            if (actualsEvents.length > 1)
+              Column(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: Container(
+                      color: Colors.black12,
+                      height: 171,
+                      width: 171,
+                      child: Image.network(
+                        '${ApiService(LocalAuthenticationService()).loadImage()}${actualsEvents[1].photo}',
+                        fit: BoxFit.cover,
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return Image.asset(
+                            height: 171,
+                            width: 171,
+                            ImgsControllerService.defaultImg.url('png'),
+                            fit: BoxFit.cover,
+                          );
+                        },
+                        errorBuilder: (context, error, stackTrace) {
+                          return Image.asset(
+                            height: 171,
+                            width: 171,
+                            ImgsControllerService.defaultImg.url('png'),
+                            fit: BoxFit.cover,
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  SizedBox(
+                      width: 171,
+                      child: Text(
+                        actualsEvents[1].name,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      )),
+                ],
+              ),
           ],
         ),
       ],
@@ -522,7 +634,9 @@ class CurrentEvents extends StatelessWidget {
 }
 
 class CurrentSortPoints extends StatelessWidget {
-  const CurrentSortPoints({super.key});
+  const CurrentSortPoints({super.key, required this.nearestSortPoints});
+
+  final nearestSortPoints;
 
   @override
   Widget build(BuildContext context) {
@@ -536,41 +650,93 @@ class CurrentSortPoints extends StatelessWidget {
             fontSize: 25,
           ),
         ),
-        Wrap(
-          spacing: 18,
+        Row(
           children: [
-            Wrap(
-              direction: Axis.vertical,
-              spacing: 10,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Image.asset(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Container(
+                    color: Colors.black12,
                     height: 171,
                     width: 171,
-                    ImgsControllerService.defaultImg.url('png'),
-                    fit: BoxFit.cover,
+                    child: Image.network(
+                      '${ApiService(LocalAuthenticationService()).loadImage()}${nearestSortPoints.first.photo}',
+                      fit: BoxFit.cover,
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Image.asset(
+                          height: 171,
+                          width: 171,
+                          ImgsControllerService.defaultImg.url('png'),
+                          fit: BoxFit.cover,
+                        );
+                      },
+                      errorBuilder: (context, error, stackTrace) {
+                        return Image.asset(
+                          height: 171,
+                          width: 171,
+                          ImgsControllerService.defaultImg.url('png'),
+                          fit: BoxFit.cover,
+                        );
+                      },
+                    ),
                   ),
                 ),
-                const Text('Name')
-              ],
-            ),
-            Wrap(
-              direction: Axis.vertical,
-              spacing: 10,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Image.asset(
-                    height: 171,
+                SizedBox(height: 10),
+                SizedBox(
                     width: 171,
-                    ImgsControllerService.defaultImg.url('png'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                const Text('Name')
+                    child: Text(
+                      nearestSortPoints.first.name,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    )),
               ],
             ),
+            SizedBox(height: 30),
+            if (nearestSortPoints.length > 1)
+              Column(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: Container(
+                      color: Colors.black12,
+                      height: 171,
+                      width: 171,
+                      child: Image.network(
+                        '${ApiService(LocalAuthenticationService()).loadImage()}${nearestSortPoints[1].photo}',
+                        fit: BoxFit.cover,
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return Image.asset(
+                            height: 171,
+                            width: 171,
+                            ImgsControllerService.defaultImg.url('png'),
+                            fit: BoxFit.cover,
+                          );
+                        },
+                        errorBuilder: (context, error, stackTrace) {
+                          return Image.asset(
+                            height: 171,
+                            width: 171,
+                            ImgsControllerService.defaultImg.url('png'),
+                            fit: BoxFit.cover,
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  SizedBox(
+                      width: 171,
+                      child: Text(
+                        nearestSortPoints[1].name,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      )),
+                ],
+              ),
           ],
         ),
       ],

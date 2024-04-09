@@ -9,6 +9,8 @@ import 'package:eco/view/screen/mark_screen/sections/places_marks.dart';
 import 'package:eco/view/screen/mark_screen/sections/routes_marks.dart';
 import 'package:eco/view/screen/mark_screen/sections/sort_points_marks.dart';
 import 'package:eco/view/screen/new_report_screen/new_report.dart';
+import 'package:eco/view/screen/new_report_screen/selection_sort_points.dart';
+import 'package:eco/view/screen/new_report_screen/type_and_name_object.dart';
 import 'package:eco/view/screen/profile_screen/profile.dart';
 import 'package:eco/view/screen/profile_screen/section/log_in.dart';
 import 'package:eco/view/screen/profile_screen/section/sign_in.dart';
@@ -99,12 +101,23 @@ class AppRouter extends _$AppRouter {
                 ),
               ],
             ),
-            AutoRoute(page: NewReportRoute.page, path: 'new_report'),
+            AutoRoute(
+              page: NewReportRoute.page,
+              path: 'new_report',
+            ),
           ],
         ),
         AutoRoute(page: PlaceDetailReviewRoute.page, path: '/place/:id'),
         AutoRoute(page: RouteDetailReviewRoute.page, path: '/route/:id'),
         AutoRoute(page: EventDetailReviewRoute.page, path: '/event/:id'),
         AutoRoute(page: SortPointDetailReviewRoute.page, path: '/sortPoint/:id'),
+        AutoRoute(
+          page: TypeAndNameObjectRoute.page,
+          path: '/type_and_name_object',
+        ),
+        AutoRoute(
+          page: SelectionSortPointsRoute.page,
+          path: '/selection_sort_points',
+        ),
       ];
 }
